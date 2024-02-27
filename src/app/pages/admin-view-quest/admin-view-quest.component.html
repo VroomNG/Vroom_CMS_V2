@@ -1,0 +1,128 @@
+<div class="main-container">
+    <!-- item details dialog -->
+    <p-dialog [(visible)]="displayDialog" [modal]="true" [responsive]="true">
+        <div class="edit-form">
+          <h3>Edit Admin</h3>
+          <p>Admin ID: {{ editedAdmin1?.id }}</p>
+          <p>Admin name: {{ editedAdmin1?.firstname }}</p>
+        </div>
+      </p-dialog>
+
+    <div class="header">
+        <div class="view-admin-grid">
+            <div class="container">
+                <div class="card">
+                    <div class="grid-header">
+                        <div class="title">
+                            <h6>All Quests</h6>
+                        </div>
+                        <div class="search">
+                            <div class="p-input-icon-left">
+                                <i class="pi pi-search"></i>
+                                <input type="text" pInputText placeholder="Search"
+                                [(ngModel)]="searchText"    
+                                >           
+                            </div>
+                            <button (click)="clear()" class="clr"><i class="fa-solid fa-arrows-rotate"></i></button> 
+                        </div>
+                        
+                        <div class="export">
+                            <button class="button" type="submit" 
+                            label="submit"  (click)="exportExcel()">
+                                Export
+                             </button>
+                        </div>
+                    </div> 
+                    <div>
+                        <app-loader *ngIf="showLoader"></app-loader>
+                        <p-table *ngIf="!showLoader" 
+                            [value]="quest"
+                            [paginator]="true"
+                            [rows]="10"
+                            [showCurrentPageReport]="false"
+                            [tableStyle]="{ 'min-width': '50rem' }"
+                            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                            [rowsPerPageOptions]="[10, 25, 50]"
+                        >
+                            <ng-template pTemplate="header">
+                                <tr style="height: 3rem; border-color: #abb4ce80; border-top-width: 0.2px; border-bottom-width:0.2px ;">
+                                    <th style="width:20%">Quest</th>
+                                    <th style="width:30%">Sub Tilte</th>
+                                    <th style="width:30%">Description</th>
+                                    <th style="width:5%">Icon</th>
+                                    <th style="width:5%">Type </th>
+                                    <th style="width:5%">Points</th>
+                                    <th style="width:5%">targets</th>
+                                    <th style="width:15%">Start Date</th>
+                                    <th style="width:15%">End Date</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-quest>
+                                <tr style="height: 3rem; border-color: #abb4ce80; border-top-width: 0.2px; border-bottom-width:0.2px ">
+                                
+                                    <td>
+                                        {{quest.title}}
+                                    </td>
+                                    <td>
+                                        {{quest.subTitle}}
+                                    </td>
+                                    <td>
+                                        {{quest.description}}
+                                    </td>
+                                    <td>
+                                        <img src={{quest.icon}} width="10px"/>
+                                    </td>
+                                    <td>
+                                        <div *ngIf="quest.type == 1 ">
+                                            Icon
+                                        </div>
+                                        <div *ngIf="quest.type == 2 ">
+                                            Badge
+                                        </div>
+                                        
+                                    </td>
+                                    <td>
+                                        {{quest.points}}
+                                    </td>
+                                    <td>
+                                        {{quest.target}}
+                                    </td>
+                                    <td>
+                                        {{quest.starts}}
+                                    </td>
+                                    <td>
+                                        {{quest.expires}}
+                                    </td>
+                                    <td class="action">
+                                        <span class="edit">
+                                            <div class="flex align-items-center justify-content-center gap-2">
+                                               <a routerLink="/quest/{{quest.id}}/details">
+                                                <button pButton pRipple type="button" icon="fa-solid fa-pencil" class="p-button-rounded p-button-text"></button>
+                                               </a>
+                                            </div>
+                                        </span>
+                                        <span class="add location">
+                                            <div class="flex align-items-center justify-content-center gap-2">
+                                               <a routerLink="/quest/{{quest.id}}/addLocation">
+                                                <button pButton pRipple type="button" icon="fa-solid fa-location-dot " class="p-button-rounded p-button-text"></button>
+                                               </a>
+                                            </div>
+                                        </span>
+                                    </td>
+                                </tr> 
+                            </ng-template>
+                            
+                                <ng-template pTemplate="paginatorleft">
+                                    <!-- <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button> -->
+                                </ng-template>
+                                <ng-template pTemplate="paginatorright">
+                                    <!-- <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button> -->
+                                </ng-template>
+                        </p-table>  
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </div>     
+    <div class="footer"></div>
+</div>

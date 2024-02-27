@@ -1,0 +1,116 @@
+<div class="main-container">
+    <!-- item details dialog -->
+    <p-dialog [(visible)]="displayDialog" [modal]="true" [responsive]="true">
+        <div class="edit-form">
+          <h3>Edit Admin</h3>
+          <p>Admin ID: {{ editedAdmin1?.id }}</p>
+          <p>Admin name: {{ editedAdmin1?.firstname }}</p>
+        </div>
+      </p-dialog>
+
+    <div class="header">
+        <div class="view-admin-grid">
+            <div class="container">
+                <div class="card">
+                    <div class="grid-header">
+                        <div class="title">
+                            <h6>View Admin Details</h6>
+                        </div>
+                        <div class="search">
+                            <div class="p-input-icon-left">
+                                <i class="pi pi-search"></i>
+                                <input type="text" pInputText placeholder="Search"
+                                [(ngModel)]="searchText"
+                                (input)="applyFilter()"
+                                >           
+                            </div>
+                            <button (click)="clear()" class="clr"><i class="fa-solid fa-arrows-rotate"></i></button> 
+                        </div>
+                        
+                        <div class="export">
+                            <button class="button" type="submit" 
+                            label="submit"  (click)="exportExcel()">
+                                Export
+                             </button>
+                        </div>
+                    </div> 
+                    <div>
+                        <app-loader *ngIf="showLoader"></app-loader>
+                        <p-table *ngIf="!showLoader" 
+                            [value]="admins"
+                            [paginator]="true"
+                            [rows]="10"
+                            [showCurrentPageReport]="false"
+                            [tableStyle]="{ 'min-width': '50rem' }"
+                            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                            [rowsPerPageOptions]="[10, 25, 50]"
+                        >
+                            <ng-template pTemplate="header">
+                                <tr style="height: 3rem; border-color: #abb4ce80; border-top-width: 0.2px; border-bottom-width:0.2px ;">
+                                    <th style="width:20%">FIRST NAME</th>
+                                    <th style="width:20%">LAST NAME</th>
+                                    <th style="width:25%">EMAIL</th>
+                                    <th style="width:15%">PHONE </th>
+                                    <th style="width:15%">ADMIN </th>
+                                    <th style="width:15%">ACTION </th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-admins>
+                                <tr style="height: 3rem; border-color: #abb4ce80; border-top-width: 0.2px; border-bottom-width:0.2px ">
+                                
+                                    <td>
+                                        {{admins.firstname}}
+                                    </td>
+                                    <td>
+                                        {{admins.lastname}}
+                                    </td>
+                                    <td>
+                                        {{admins.email}}
+                                    </td>
+                                    <td>
+                                        <div *ngIf="admins.phone_no == null ">
+                                            no number
+                                        </div>
+                                        <div *ngIf="admins.phone_no">
+                                            
+                                                    {{admins.phone_no}}
+                                        </div>
+                                    </td>
+                                    <td>
+                                    <div *ngIf="admins.user_type == '4'">
+                                        Super Admin
+                                    </div>
+                                    <div *ngIf="admins.user_type == '3'">
+                                        Sub Admin
+                                    </div>
+                                    <div *ngIf="admins.user_type == '5'">
+                                        Partner
+                                    </div>
+                                    </td>
+                                    <td class="action">
+                                        <span class="edit">
+                                            <div class="flex align-items-center justify-content-center gap-2">
+                                               <a routerLink="/users/{{admins.id}}/edit">
+                                                <button pButton pRipple type="button" icon="fa-solid fa-pencil" class="p-button-rounded p-button-text"></button>
+                                               </a>
+                                            </div>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                            
+                                <ng-template pTemplate="paginatorleft">
+                                    <!-- <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button> -->
+                                </ng-template>
+                                <ng-template pTemplate="paginatorright">
+                                    <!-- <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button> -->
+                                </ng-template>
+                        </p-table>  
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </div>
+       
+    <div class="footer"></div>
+</div>

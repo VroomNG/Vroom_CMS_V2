@@ -1,0 +1,104 @@
+<app-vr-alert *ngIf="showAlert" [color]="alertColor">
+    {{ alertMsg }}
+</app-vr-alert>
+<app-loader *ngIf="!riders"></app-loader>
+<div class="main-container" *ngIf="riders">
+    <div class="header">
+        <div class="add-admin-form">
+           <div class="card">
+            <div class="card-title">
+                <h5>Edit Riders</h5>
+            </div>
+            <div class="card-body">
+                <form>
+                <div class="container">
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div>
+                                <label htmlFor="name">First Name*</label>
+                            </div>
+                            <input type="text" [(ngModel)]="riders.firstname" name="firstname" 
+                                class="form-control form-control-alternative" placeholder="First name" value="{{riders.firstname}}">
+                        </div>
+                    </div>
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div>
+                                <label htmlFor="lastname">Last Name*</label>
+                            </div>
+                            <input type="text"  [(ngModel)]="riders.lastname" name="lastname" 
+                                class="form-control form-control-alternative" placeholder="Last name" value="{{riders.lastname}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div>
+                                <label htmlFor="city">City*</label>
+                            </div>
+                            <input type="text" [(ngModel)]="riders.city" name="city" 
+                            class="form-control form-control-alternative" placeholder="City" value="{{riders.city}}">   
+                            
+                        </div>
+                    </div>
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div>
+                                <label htmlFor="phone">Phone Number*</label>
+                            </div>
+                            <input type="text" [(ngModel)]="riders.Phone_no" name="phone number" 
+                                class="form-control form-control-alternative" placeholder="Phone Number" value="{{riders.Phone_no}}">
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div>
+                                <label htmlFor="password">Email*</label>
+                            </div>
+                            <input type="text"  name="email" 
+                                class="form-control form-control-alternative" placeholder="Email" value="{{riders.email}}" readonly="true">
+                        </div>
+                    </div>
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div>
+                                <label htmlFor="password">Password*</label>
+                            </div>
+                            <input type="text" name="password" 
+                                class="form-control form-control-alternative" placeholder="Password" value="{{riders.password}}">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div>
+                                <label htmlFor="balance">Wallet *</label>
+                            </div>
+                            <input type="text" [(ngModel)]="riders.balance" name="balance" 
+                                class="form-control form-control-alternative" placeholder="Wallet" value="{{riders.balance}}">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- <div class="btn"> -->
+                    <button type="submit" label="submit" (click)="update()">
+                       Update
+                    </button>
+                    <button type="submit" label="submit" class="del_btn" (click)="deleteRider()">
+                       Delete
+                    </button>
+                <!-- </div> -->
+              </form>
+            </div>
+           </div>
+        </div>
+    </div>
+    <div class="footer"></div>
+
+</div>

@@ -1,0 +1,218 @@
+<app-vr-alert *ngIf="showAlert" [color]="alertColor">
+    {{ alertMsg }}
+</app-vr-alert>
+<div class="main-container">
+    <div class="header">
+        <form [formGroup]="addVehicleForm" (ngSubmit)="onSubmit()" class="add-admin-form">
+           <div class="card-1">
+            <div class="card-title">
+                <h5>Add Vehicle and Fare Details</h5>
+            </div>
+            <div class="card-body">
+             
+                <div class="container">
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div class="form-label">
+                                <label htmlFor="vehicle_type">vehicle Type*</label>
+                            </div>
+                         <select id="vehicle_type" name="vehicle_type" formControlName="vehicle_type">
+                            <option *ngFor="let option of options" [value]="option.name">{{ option.name }}</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div class="form-label">
+                                <label htmlFor="minimum_fare">Minimum Fare*</label>
+                                <app-vr-input pInputText [control]="minimum_fare" type="text" name="minimum_fare" id="minimum_fare" placeholder="Minimum Fare" ></app-vr-input> 
+                            </div>
+                            
+                    
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div class="form-label">
+                                <label htmlFor="make">Vehicle Make*</label>
+                            </div>
+                            <select id="make" name="make" [(ngModel)]="make" formControlName="make">
+                                <option *ngFor="let option of make_list" [value]="option.name">{{ option.name }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div class="form-label">
+                                <label htmlFor="make">Vehicle Model*</label>
+                            </div>
+                            <select id="model" name="model" [(ngModel)]="model" formControlName="model">
+                                <option *ngFor="let option of model_list" [value]="option.name">{{ option.name }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div> 
+                <div class="container">
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div class="form-label">
+                                <label htmlFor="trip_type">Trip Type*</label>
+                            </div>
+                            <select id="trip_type" name="trip_type" [(ngModel)]="trip_type" formControlName="trip_type">
+                                <option *ngFor="let option of trip_type_list" [value]="option.name">{{ option.name }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div class="form-label">
+                                <label htmlFor="commission">Commission(%)*</label>
+                            </div>
+                            <app-vr-input pInputText [control]="commission" type="text" name="commission" placeholder="Commission"></app-vr-input> 
+                        </div>
+                    </div>
+                </div>
+                 
+                <div class="container">
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div class="form-label">
+                                <label htmlFor="per_km_rate">Per KM Rate *</label>
+                            </div>
+                            <app-vr-input pInputText [control]="per_km_rate" type="text" placeholder="Per KM Rate"></app-vr-input> 
+                      
+                        </div>
+                    </div>
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div class="form-label">
+                                <label htmlFor="isactive">Is Vehicle Available*</label>
+                            </div>
+                            <select id="dropdown" name="dropdown" [(ngModel)]="isactive" formControlName="isactive">
+                                <option *ngFor="let option of selectActive" [value]="option.id">{{ option.name }}</option>
+                            </select>
+                            <!-- <app-vr-input pInputText [control]="isactive" type="text" placeholder="Is Vehicle Available"></app-vr-input>  -->
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div class="form-label">
+                                <label htmlFor="per_minute_rate">Rate Per Minute*</label>
+                            </div>
+                            <app-vr-input pInputText [control]="per_minute_rate" type="text" placeholder="Per Time Fare"></app-vr-input> 
+                        </div>
+                    </div>
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div class="form-label">
+                                <label htmlFor="base_fare">Base Fare*</label>
+                            </div>
+                            <app-vr-input pInputText [control]="base_fare" type="text" placeholder="Base Fare"></app-vr-input> 
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div class="form-label">
+                                <label htmlFor="tolls_fees">Toll Fees *</label>
+                            </div>
+                            <app-vr-input pInputText [control]="tolls_fees" type="text" placeholder="Base Fare"></app-vr-input>  
+                        </div>
+                    </div>
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div class="form-label">
+                                <label htmlFor="available_seat">Available Seats/Person capacity*</label>
+                            </div>
+                            <app-vr-input pInputText [control]="available_seat" type="text" placeholder="Total Amount of Seats"></app-vr-input> 
+                          
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div class="form-label">
+                                <label htmlFor="description">Description*</label>
+                            </div>
+                            <app-vr-input pInputText [control]="description" type="text" placeholder="Description"></app-vr-input>
+                        </div>
+                    </div>
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div class="form-label">
+                                <label htmlFor="year">Vehicle year*</label>
+                            </div>
+                            <select id="year" name="year" [(ngModel)]="year" formControlName="year">
+                                <option *ngFor="let option of years" [value]="option">{{ option }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>  
+                <div class="box">
+                    <div class="container">
+                        <div class="card-input">
+                            <div class="form-group">
+                                <div class="form-label">
+                                    <label htmlFor="toggle">Toggle flat rate fee *</label>
+                                </div>
+                                <select id="toggle" name="toggle">
+                                    <option *ngFor="let option of selectActive" [value]="option.name">{{ option.name }}</option>
+                                </select> 
+                            </div>
+                        </div>
+                        <div class="card-input">
+                            <div class="form-group">
+                                <div class="form-label">
+                                    <label htmlFor="peek_hour_fare">Flat Rate</label>
+                                </div>
+                                <app-vr-input pInputText [control]="peek_hour_fare" type="text" placeholder="Total Amount of Seats"></app-vr-input> 
+                              
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+           </div>
+           <div class="card-2">
+            <div class="card-title">
+                <h5>Cancellation Details</h5>
+
+            </div>
+             <div class="card-body">
+                <div class="container-1">
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div class="form-label">
+                                <label htmlFor="cancel_charge_rider">Cancellation Charge for Rider*</label>
+                            </div>
+                            <app-vr-input pInputText [control]="cancel_charge_rider" type="text" placeholder="Charge for Rider"></app-vr-input>
+                       
+                        </div>
+                    </div>
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div class="form-label">
+                                <label htmlFor="cancel_charge_driver">Cancellation Charge for Driver*</label>
+                            </div>
+                            <app-vr-input pInputText [control]="cancel_charge_driver" type="text" placeholder="Charge for Driver"></app-vr-input>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" label="submit">
+                    Add 
+                 </button>
+                 <button type="submit" label="submit" class="button">
+                    Cancel
+                 </button>
+             </div>
+           </div>
+        </form>
+        </div>
+    </div>
+    <div class="footer"></div>

@@ -1,0 +1,101 @@
+<div>
+    <div class="header ">
+        <header>
+            <app-loader *ngIf="!dashbaord_data"></app-loader>
+            <div class="container" *ngIf="dashbaord_data">
+                <div class="card">
+                    <div class="container">
+                        <span class="title">
+                           RIDERS
+                        </span>
+                        <span class="subtitle">{{dashbaord_data.riders}}</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="container">
+                        <span class="title">
+                            DRIVERS
+                        </span>
+                        <span class="subtitle">{{dashbaord_data.drivers}}</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="container">
+                        <span class="title">
+                            VEHICLES
+                        </span>
+                        <span class="subtitle">{{dashbaord_data.vehicles}}</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="container">
+                        <span class="title">
+                            COMPLETED TRIPS
+                        </span>
+                        <span class="subtitle">{{dashbaord_data.completedTrips}}</span>
+                        <!-- xx -->
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="container">
+                        <span class="title">
+                            TRIPS
+                        </span>
+                        <span class="subtitle">{{dashbaord_data.trips}}</span>
+                        <!-- <div class="text">
+                            <span>
+                                <span class="text-nowrap">this month</span>
+                            </span>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="container">
+                        <span class="title">
+                            TOTAL TRIP PAYMENT
+                        </span>
+                        <span class="subtitle">{{dashbaord_data.trip_payment}}</span>
+                        <!-- <div class="text">
+                            <span>
+                                <span class="text-nowrap">this month</span>
+                            </span>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="container">
+                        <span class="title">
+                            TOTAL TRIP COMMISSION
+                        </span>
+                        <span class="subtitle">{{dashbaord_data.total_adminShared }}</span>
+                        <!-- <div class="text">
+                            <span>
+                                <span class="text-nowrap">this month</span>
+                            </span>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="container">
+                        <span class="title">
+                            TOTAL DRIVERS EARNED
+                        </span>
+                        <span class="subtitle">{{dashbaord_data.total_driverShared }}</span>
+                        <!-- <div class="text">
+                            <span>
+                                <span class="text-nowrap">this month</span>
+                            </span>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="footer">
+        <div class="container">
+            <div class="card">      
+                <p-chart type="bar" [data]="data" [options]="options"></p-chart>
+            </div>
+          </div>
+    </div>
+</div>

@@ -1,0 +1,221 @@
+.main-container {
+    height: 100vh;
+    width: 100%;
+
+}
+.header {
+    height: 30%;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,0.6755077030812324) 35%, rgba(0,212,255,1) 100%);
+}
+
+.footer {
+    height: 100%;
+    background-color: #F3F5FB;
+}
+
+.view-admin-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-color: transparent;
+    position: absolute;
+    
+}
+.container {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // background-color: red;
+
+}
+
+.grid-header {
+    height: 25%;
+    width: 100%;
+    display: flex;
+   
+}
+
+.card {
+    width: 95%;
+    height: 80%;
+    // bottom: 60px;
+}
+
+.title {
+    width: 16%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    // background-color: rgb(58, 255, 58);
+}
+.search {
+    width: 50%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.search input {
+    width: 100%;
+    height: 80%;
+    padding: 10px 20px;
+}
+.export {
+    width: 30%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    // background-color: rgb(128, 0, 60);
+}
+td {
+    padding: 0px 20px;
+    font-size: 12px;
+}
+
+td i {
+    color: #5E72E4;
+    cursor: pointer;
+}
+th {
+    padding: 0px 20px;
+    color: #ABB4CE;
+    font-size: 12px;
+    font-weight: 500;
+}
+.button {
+    padding: 8px 12px;
+    // width: 30%;
+    border-radius: 6px;
+    margin: 10px;
+    background-color: #26125e;
+    color: white;
+    font-weight: 600;
+    border-color: transparent;
+    // box-shadow: 2px 2px #442c88ee;
+}
+.button:hover {
+    background-color: #1fbffd ;
+}
+
+.trip-details {
+    width: 60rem;
+    height: 60rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.trip-details .cont {
+    width: 95%;
+    height: 98%;
+    // background-color: rgb(142, 151, 142);
+}
+
+.details1 {
+    // background-color: red;
+    display: flex;
+    width: 100%;
+    height: 50%;
+}
+.details2 {
+    // background-color: red;
+    // display: flex;
+    width: 100%;
+    height: 50%;
+}
+.box {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+}
+.box-card {
+    width: 95%;
+    height: 60%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-top: 8px;
+}
+.box-card-1 {
+    width: 95%;
+    height: 30%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.box-card-2 {
+    width: 95%;
+    height: 60%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.box-1 {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;  
+}
+.box-2 {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.box-card-3 {
+    width: 100%;
+    height: 95%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.box-cont {
+    width: 95%;
+    height: 90%;
+    // background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+table {
+    border: 2px solid grey;
+}
+// table {
+//     border: 2px solid grey;
+// }
+
+
+.clr {
+    padding: 8px 12px;
+    // width: 30%;
+    border-radius: 6px;
+    margin: 10px;
+    background-color: #26125e;
+    color: white;
+    font-weight: 600;
+    border-color: transparent;
+}
+
+.clr:hover {
+    background-color: #1fbffd ;
+}
+

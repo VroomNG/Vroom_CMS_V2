@@ -1,0 +1,108 @@
+<div class="main-container">
+    <div class="header">
+        <div class="view-admin-grid">
+            <div class="container">
+                <div class="card">
+                    <div class="grid-header">
+                        <div class="title">
+                            <h6>Vehicle Type</h6>
+                        </div>
+                        <div class="search">
+                            <div class="p-input-icon-left">
+                                <i class="pi pi-search"></i>
+                                <input type="text" pInputText placeholder="Search"
+                                [(ngModel)]="searchText"
+                                (input)="applyFilter()"
+                                >           
+                            </div>
+                            <button (click)="clear()" class="clr"><i class="fa-solid fa-arrows-rotate"></i></button> 
+                        </div>
+                        
+                        <div class="export">
+                            <button class="button" type="submit" 
+                            label="submit"  (click)="exportExcel()">
+                                Export
+                             </button>
+                        </div>
+                    </div> 
+                    <div>
+
+                        <app-loader *ngIf="showLoader" [color]="loaderColor">
+                        </app-loader>
+                    <p-table *ngIf="!showLoader"
+                        [value]="vehicleType"
+                        [paginator]="true"
+                        [rows]="18"
+                        [showCurrentPageReport]="false"
+                        [tableStyle]="{ 'min-width': '100rem' }"
+                        currentPageReportTemplate=""
+                        [rowsPerPageOptions]="[10, 25, 50]"
+                    >
+                        <ng-template pTemplate="header">
+                            <tr style="height: 3rem; border-color: #abb4ce80; border-top-width: 0.2px; border-bottom-width:0.2px ;">
+                                <th style="width:5%">TYPE </th>
+                                <th style="width:5%">TRIP TYPE</th>
+                                <th style="width:5%">PER KM RATE (&#x20A6;)</th>
+                                <th style="width:5%">MINIMUM FARE   </th>
+                                <th style="width:5%">COMM. (%) </th>
+                                <th style="width:5%">AVAILABLE SEATS </th>
+                                <th style="width:5%">BASE FEE (&#x20A6;)  </th>
+                                <th style="width:5%">TOLLS FEE (&#x20A6;)  </th>
+                                <th style="width:5%">RATE PER MINUTE (&#x20A6;)  </th>
+                                <!-- <th style="width:5%">LAGOS ROAD DEVELOPMENT FUND LEVY (&#x20A6;)</th> -->
+                                <th style="width:5%">CANCELLATION CHARGE FOR DRIVER  (&#x20A6;)</th>
+                                <th style="width:5%">CANCELLATION CHARGE FOR RIDER  (&#x20A6;)</th>
+                                <th style="width:5%">(SHARE) PER KM RATE  (&#x20A6;)</th>
+                                <th style="width:5%">(SHARE) RATE PER MINUTE  (&#x20A6;)</th>
+                                <th style="width:5%">(SHARE) MINIMUM FARE   (&#x20A6;)</th>
+                                <th style="width:5%">(SHARE) BASE FEE    (&#x20A6;)</th>
+                                <th style="width:5%">ACTION</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-vehicleType>
+                            <tr style="height: 3rem; border-color: #abb4ce80; border-top-width: 0.2px; border-bottom-width:0.2px ">
+                                <td>{{ vehicleType.vehicle_type
+                                }}</td>
+                                <td>{{ vehicleType.trip_type }}</td>
+                                <td>{{ vehicleType.per_km_rate }}</td>
+                                <td>{{ vehicleType.minimum_fare }}</td>
+                                <td>{{ vehicleType.commission }}</td>
+                                <td>{{ vehicleType.available_seat }}</td>
+                                <td>{{ vehicleType.base_fare }}</td>
+                                <td>{{ vehicleType.tolls_fees }}</td>
+                                <td>{{ vehicleType.per_minute_rate }}</td>
+                                <!-- <td>{{ vehicleType.levy }}</td> -->
+                                <td>{{ vehicleType.cancel_charge_driver }}</td>
+                                <td>{{ vehicleType.cancel_charge_rider }}</td>
+                                <td>{{ vehicleType.per_km_rate_share }}</td>
+                                <td>{{ vehicleType.per_minute_rate_share }}</td>
+                                <td>{{ vehicleType.minimum_fare_share }}</td>
+                                <td>{{ vehicleType.base_fare_share }}</td>
+                                <td>
+                                    <span class="edit">
+                                        <div class="flex align-items-center justify-content-center gap-2">
+                                           <a routerLink="/vehicleUpdate/{{vehicleType.id}}/edit">
+                                            <button pButton pRipple type="button" icon="fa-solid fa-pencil" class="p-button-rounded p-button-text"></button>
+                                           </a>
+                                        </div>
+                                    </span>
+                                </td>
+                            </tr>
+                        </ng-template>
+                        
+                            <ng-template pTemplate="paginatorleft">
+                                <!-- <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button> -->
+                            </ng-template>
+                            <ng-template pTemplate="paginatorright">
+                                <!-- <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button> -->
+                            </ng-template>
+                        </p-table>  
+                        
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </div>
+       
+    <div class="footer"></div>
+</div>

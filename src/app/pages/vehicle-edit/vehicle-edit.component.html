@@ -1,0 +1,255 @@
+<app-vr-alert *ngIf="showAlert" [color]="alertColor">
+    {{ alertMsg }}
+</app-vr-alert>
+<div class="main-container">
+    <div class="header">
+        <form class="add-admin-form">
+           <div class="card-1">
+            <div class="card-title">
+                <h5>Edit Vehicle details</h5>
+            </div>
+            <div class="card-body">
+             
+                <div class="container">
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div class="form-label">
+                                <label htmlFor="vehicle_type">vehicle Type*</label>
+                            </div>
+                            <div>
+                                <input type="text" [(ngModel)]="vehicleType.vehicle_type" name="vehicle_type" 
+                                class="form-control form-control-alternative" placeholder="Vehicle type"value="{{vehicleType.vehicle_type}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div class="form-label">
+                                <label htmlFor="minimum_fare">Minimum Fare*</label>
+                                <div>
+                                    <input type="text" [(ngModel)]="vehicleType.minimum_fare" name="minimum_fare" 
+                                    class="form-control form-control-alternative" placeholder="Min Fare" value="{{vehicleType.minimum_fare }}">
+                                </div>
+                            </div>
+                            
+                    
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div class="form-label">
+                                <label htmlFor="make">Vehicle Make*</label>
+                            </div>
+                            <div>
+                                <input type="text" [(ngModel)]="vehicleType.make" name="make" 
+                                class="form-control form-control-alternative" placeholder="Vehicle Make" value="{{vehicleType.make }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div class="form-label">
+                                <label htmlFor="make">Vehicle Model*</label>
+                            </div>
+                            <div>
+                                <input type="text" [(ngModel)]="vehicleType.model" name="model" 
+                                class="form-control form-control-alternative" placeholder="Vehicle Model" value="{{vehicleType.model }}">
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                <div class="container">
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div class="form-label">
+                                <label htmlFor="trip_type">Trip Type*</label>
+                            </div>
+                         <div>
+                                <input type="text" [(ngModel)]="vehicleType.trip_type" name="trip_type" 
+                                class="form-control form-control-alternative" placeholder="Trip Type" value="{{vehicleType.trip_type }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div class="form-label">
+                                <label htmlFor="commission">Commission(%)*</label>
+                            </div>
+                            <div>
+                                <input type="text" [(ngModel)]="vehicleType.commission" name="commission" 
+                                class="form-control form-control-alternative" placeholder="Commssion" value="{{vehicleType.commission }}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 
+                <div class="container">
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div class="form-label">
+                                <label htmlFor="per_km_rate">Per KM Rate *</label>
+                            </div>
+                            <div>
+                                <input type="text" [(ngModel)]="vehicleType.per_km_rate" name="per_km_rate" 
+                                class="form-control form-control-alternative" placeholder="Per KM Rate" value="{{vehicleType.per_km_rate }}">
+                            </div>
+                      
+                        </div>
+                    </div>
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div class="form-label">
+                                <label htmlFor="isactive">Is Vehicle Available*</label>
+                            </div>
+                            <div>
+                                <input type="text" class="form-control form-control-alternative" placeholder="Avalaibility" [value]="vehicleType.isactive === '1' ? 'Yes' : vehicleType.isactive=== '0' ? 'No' : vehicleType.isactive" readonly="true">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div class="form-label">
+                                <label htmlFor="per_minute_rate">Rate Per Minute*</label>
+                            </div>
+                            <div>
+                                <input type="text" [(ngModel)]="vehicleType.per_minute_rate" name="per_minute_rate" 
+                                class="form-control form-control-alternative" placeholder="Per Minute Rate" value="{{vehicleType.per_minute_rate }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div class="form-label">
+                                <label htmlFor="base_fare">Base Fare*</label>
+                            </div>
+                             <div>
+                                <input type="text" [(ngModel)]="vehicleType.base_fare" name="per_minute_rate" 
+                                class="form-control form-control-alternative" placeholder="Base Fare" value="{{vehicleType.base_fare }}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div class="form-label">
+                                <label htmlFor="tolls_fees">Toll Fees *</label>
+                            </div>
+                            <div>
+                                <input type="text" [(ngModel)]="vehicleType.tolls_fees" name="tolls_fees" 
+                                class="form-control form-control-alternative" placeholder="Tolls Fees" value="{{vehicleType.tolls_fees }}">
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div class="form-label">
+                                <label htmlFor="available_seat">Available Seats/Person capacity*</label>
+                            </div>
+                            <div>
+                                <input type="text" [(ngModel)]="vehicleType.available_seat" name="available_seat" 
+                                class="form-control form-control-alternative" placeholder="Availabe Seat" value="{{vehicleType.available_seat }}">
+                            </div>
+                          
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div class="form-label">
+                                <label htmlFor="description">Description*</label>
+                            </div>
+                             <div>
+                                <input type="text" [(ngModel)]="vehicleType.description" name="description" 
+                                class="form-control form-control-alternative" placeholder="Description" value="{{vehicleType.description}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div class="form-label">
+                                <label htmlFor="year">Vehicle year*</label>
+                            </div>
+                            <div>
+                                <input type="text" [(ngModel)]="vehicleType.year" name="year" 
+                                class="form-control form-control-alternative" placeholder="Year" value="{{vehicleType.year }}">
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+                <div class="box">
+                    <div class="container">
+                        <div class="card-input">
+                            <div class="form-group">
+                                <div class="form-label">
+                                    <label htmlFor="toggle">Toggle flat rate fee *</label>
+                                </div>
+                                <select id="toggle" name="toggle">
+                                    <option *ngFor="let option of selectActive" [value]="option.name">{{ option.name }}</option>
+                                </select> 
+                            </div>
+                        </div>
+                        <div class="card-input">
+                            <div class="form-group">
+                                <div class="form-label">
+                                    <label htmlFor="peek_hour_fare">Flat Rate</label>
+                                </div>
+                                <div>
+                                    <input type="text" [(ngModel)]="vehicleType.peek_hour_fare" name="peek_hour_fare" 
+                                    class="form-control form-control-alternative" placeholder="Peek Hour Fare" value="{{vehicleType.peek_hour_fare }}">
+                                </div> 
+                              
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+           </div>
+           <div class="card-2">
+            <div class="card-title">
+                <h5>Cancellation Details</h5>
+
+            </div>
+             <div class="card-body">
+                <div class="container-1">
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div class="form-label">
+                                <label htmlFor="cancel_charge_rider">Cancellation Charge for Rider*</label>
+                            </div>
+                            <div>
+                                <input type="text" [(ngModel)]="vehicleType.cancel_charge_rider" name="cancel_charge_rider"
+                                class="form-control form-control-alternative" placeholder="Cancel Charge Rider" value="{{vehicleType.cancel_charge_rider }}">
+                            </div>
+                       
+                        </div>
+                    </div>
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div class="form-label">
+                                <label htmlFor="cancel_charge_driver">Cancellation Charge for Driver*</label>
+                            </div>
+                            <div>
+                                <input type="text" [(ngModel)]="vehicleType.cancel_charge_driver" name="cancel_charge_driver"
+                                class="form-control form-control-alternative" placeholder="Cancel Charge Driver" value="{{vehicleType.cancel_charge_driver }}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" label="submit" (click)="update()">
+                    Update
+                 </button>
+                 <button type="submit" label="submit" class="button" (click)="deleteVehicle()">
+                    Delete
+                 </button>
+             </div>
+           </div>
+        </form>
+        </div>
+    </div>
+    <div class="footer"></div>

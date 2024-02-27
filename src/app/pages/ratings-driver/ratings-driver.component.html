@@ -1,0 +1,116 @@
+<div class="main-container">
+    <div class="header">
+        <div class="view-admin-grid">
+            <div class="container">
+                <div class="card">
+                    <div class="grid-header">
+                        <div class="title">
+                            <h6>Trips Review from Drivers</h6>
+                        </div>
+                        <div class="search">
+                            <div class="p-input-icon-left">
+                                <i class="pi pi-search"></i>
+                                <input type="text" pInputText placeholder="Search"
+                                [(ngModel)]="searchText"
+                                (input)="applyFilter()"
+                                >           
+                            </div>
+                            <button (click)="clear()" class="clr"><i class="fa-solid fa-arrows-rotate"></i></button> 
+                        </div>
+                        
+                        <div class="export">
+                            <button class="button" type="submit" 
+                            label="submit"  (click)="exportExcel()">
+                                Export
+                             </button>
+                        </div>
+                    </div> 
+                    <div>
+                    <app-loader *ngIf="showLoader"></app-loader>
+                    <p-table *ngIf="!showLoader"
+                        [value]="drivers"
+                        [paginator]="true"
+                        [rows]="10"
+                        [showCurrentPageReport]="false"
+                        [tableStyle]="{ 'min-width': '50rem' }"
+                        currentPageReportTemplate=""
+                        [rowsPerPageOptions]="[10, 25, 50]"
+                    >
+                        <ng-template pTemplate="header">
+                            <tr style="height: 3rem; border-color: #abb4ce80; border-top-width: 0.2px; border-bottom-width:0.2px ;">
+                                <th style="width:5%">TRIP NO</th>
+                                <th style="width:5%">DRIVER</th>
+                                <th style="width:5%">RIDER</th>
+                                <th style="width:5%">RATING</th>
+                                <th style="width:5%">COMMENTS</th>
+                                <th style="width:5%">PHONE</th>
+                                <th style="width:5%">REVIEW DATE</th>
+                                <th style="width:5%">ACTION</th>
+                            </tr>
+                            <!-- TRIP NO	RIDER	DRIVER	RATING	COMMENTS	PHONE	REVIEW DATE	ACTION -->
+                        </ng-template>
+                        <ng-template pTemplate="body" let-drivers>
+                            <tr style="height: 3rem; border-color: #abb4ce80; border-top-width: 0.2px; border-bottom-width:0.2px ">
+                                <td>VRM{{ drivers.trip_id}}</td>
+                                <td>
+                                    <div *ngIf="drivers.driverName">
+                                      {{ drivers.driverName }}
+                                    </div> 
+                                    <div *ngIf="drivers.driverName === null">
+                                       No name
+                                    </div> 
+                                    <div *ngIf="drivers.driverName === '' ">
+                                       No name
+                                    </div> 
+                                 </td>
+                               
+                                <td>
+                                   <div *ngIf="drivers.riderName">
+                                     {{ drivers.riderName }}
+                                   </div> 
+                                   <div *ngIf="drivers.riderName === null">
+                                      No name
+                                   </div> 
+                                   <div *ngIf="drivers.riderName === '' ">
+                                      No name
+                                   </div> 
+                                </td>
+                                <td>{{ drivers.rating }}</td>
+                               
+                                <td>
+                                    <div *ngIf="drivers.comments">
+                                        "{{ drivers.comments }}"
+                                    </div>
+                                    <div *ngIf="drivers.comments === null">
+                                        "No comments"
+                                    </div>
+                                    <div *ngIf="drivers.comments === '' ">
+                                        "No comments"
+                                    </div>
+                                    
+                                </td>
+                                <td>{{ drivers.phone_no }}</td>
+                                <td>{{ drivers.updated_at  | date:'short':'UTC' }}</td>
+                                <td>
+                                    
+                                    <button type="button" class="btn btn-danger" (click)="deleteDriver(drivers)">Delete</button>
+                                  
+                                </td>
+                            </tr>
+                        </ng-template>
+                        
+                            <ng-template pTemplate="paginatorleft">
+                                <!-- <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button> -->
+                            </ng-template>
+                            <ng-template pTemplate="paginatorright">
+                                <!-- <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button> -->
+                            </ng-template>
+                        </p-table>  
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </div>
+       
+    <div class="footer"></div>
+</div>

@@ -1,0 +1,166 @@
+<p-dialog [(visible)]="displayDialog" [modal]="true" [responsive]="true">
+    <div class="trip-details">
+        <div class="cont"> 
+            <h5>Trip Invoice: Finished</h5>
+            <div class="details1">
+                <div class="box">
+                     <div class="box-card">
+                        <h6>Your Trip : {{viewTrips?.utc_trip_datetime}}</h6>
+                        <div>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15902.195574075227!2d6.9746144999999995!3d4.847232549999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sng!4v1698649896811!5m2!1sen!2sng" width="100%" 
+                            height="250" style="border:0;" allowfullscreen=""
+                             loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+
+                     </div>
+                </div>
+                <div class="box-1">
+                     <div class="box-card-1">
+                        <div class="box-cont">
+                            <table>
+                              <tr>
+                                <th>Fare Breakdown For Ride No : 2304</th>
+                              </tr>
+                              <tr>
+                                <td>Actual Cost</td>
+                                <td>{{viewTrips?.trip_amount}}</td>
+                              </tr>
+                              <tr>
+                                <td>Total Fare (Payment Mode: cash)</td>
+                                <td>{{viewTrips?.trip_amount}}  </td>
+                              </tr>
+                            </table>
+
+
+                        </div>
+                     </div>
+                     <br>
+                     <hr>
+                     <div class="box-card-2">
+
+                     </div>
+                </div>
+            </div>
+            <div class="details2">
+                <div class="box-2">
+                    <div class="box-card-3">
+                        hh
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </p-dialog>
+<div class="main-container">
+    <div class="header">
+        <div class="view-admin-grid">
+            <div class="container">
+                <div class="card">
+                   <div class="grid-header">
+                        <div class="title">
+                            <h6>Completed Trips</h6>
+                        </div>
+                        <div class="search">
+                            <div class="p-input-icon-left">
+                                <i class="pi pi-search"></i>
+                                <input type="text" pInputText placeholder="Search"
+                                [(ngModel)]="searchText"
+                                (input)="applyFilter()"
+                                >           
+                            </div>
+                            <button (click)="clear()" class="clr"><i class="fa-solid fa-arrows-rotate"></i></button> 
+                        </div>
+                        
+                        <div class="export">
+                            <button class="button" type="submit" 
+                            label="submit"  (click)="exportExcel()">
+                                Export
+                             </button>
+                        </div>
+                    </div> 
+                    <div>
+                        <app-loader *ngIf="showLoader"></app-loader>
+                        <p-table *ngIf="!showLoader"
+                        [value]="trips"
+                        [paginator]="true"
+                        [rows]="10"
+                        [showCurrentPageReport]="false"
+                        [tableStyle]="{ 'min-width': '80rem' }"
+                        currentPageReportTemplate=""
+                        [rowsPerPageOptions]="[10, 25, 50]"
+                    >
+                        <ng-template pTemplate="header">
+                            <tr style="height: 3rem; border-color: #abb4ce80; border-top-width: 0.2px; border-bottom-width:0.2px ;">
+                                <th style="width:5%">TRIP TYPE </th>
+                                <th style="width:5%">TRIP NO </th>
+                                <th style="width:5%">DATE</th>
+                                <th style="width:5%">DRIVER </th>
+                                <th style="width:5%">RIDER </th>
+                                <th style="width:5%">ACTUAL AMOUNT (&#x20A6;)</th>
+                                <th style="width:5%">TRIP ROUNDING AMOUNT (&#x20A6;)</th>
+                                <th style="width:5%">VEHICLE TYPE</th>
+                                <th style="width:5%">TRIP STATUS </th>
+                                <th style="width:5%">PAYMENT MODE</th>
+                                <!-- <th style="width:5%">PAST/
+                                    UPCOMING</th> -->
+                                <th style="width:5%">ACTION</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-trips>
+                        <tr style="height: 3rem; border-color: #abb4ce80; border-top-width: 0.2px; border-bottom-width:0.2px "
+                         *ngIf="trips.trip_status === '3' || searchText === '' || trips.driver_firstname.toLowerCase().includes(searchText) || trips.firstname.toLowerCase().includes(searchText) || trips.lastname.toLowerCase().includes(searchText)   ">
+                                <td>
+                                    <div *ngIf="trips.trip_type == '1'">
+                                        Individual
+                                    </div>
+                                </td>
+                                <td>VRM {{ trips.id }}</td>
+                                <td> {{ trips.utc_trip_datetime  | date:'short':'UTC' }}</td>
+                                <td>{{ trips.driver_firstname }}</td>
+                                <td>{{ trips.firstname }}  {{ trips.lastname }}</td>
+                                <td>{{ trips.trip_amount }}</td>
+                                <td>{{ trips.trip_amount_without_discount }}</td>
+                                <td>
+                                    {{ trips.vehicle_type }}
+                                    {{ trips.make }}
+                                </td>
+                                <td>
+                                    
+                                    <div *ngIf="trips.trip_status == 3">
+                                        <span>Completed</span>
+                                    </div>
+                                    <div *ngIf="trips.trip_status == 6">
+                                        <span>Cancelled</span>
+                                    </div>
+                                    
+                                </td>
+                                <td>{{ trips.payment_type }}</td>
+                                <!-- <td>{{ trips.past }}</td>   -->
+                                
+                                <td class="action">
+                                    <span class="edit">
+                                        <div class="flex align-items-center justify-content-center gap-2"
+                                        (click)="viewTrip(trips)"
+                                        > 
+                                            <button pButton pRipple type="button" icon="fa-solid fa-eye" class="p-button-rounded p-button-text"></button>                 
+                                        </div>
+                                    </span>
+                                </td>
+                            </tr>
+                        </ng-template>
+                        
+                            <ng-template pTemplate="paginatorleft">
+                                <!-- <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button> -->
+                            </ng-template>
+                            <ng-template pTemplate="paginatorright">
+                                <!-- <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button> -->
+                            </ng-template>
+                        </p-table>  
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </div>
+       
+    <div class="footer"></div>
+</div>

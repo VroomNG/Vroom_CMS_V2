@@ -1,0 +1,185 @@
+<app-vr-alert *ngIf="showAlert" [color]="alertColor">
+    {{ alertMsg }}
+</app-vr-alert>
+<div class="main-container">
+    <div class="header">
+        <div class="add-admin-form">
+           <div class="card">
+            <div class="card-title">
+                <h5>Add Riders</h5>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="addRiders" (ngSubmit)="onSubmit()">
+                <div class="container">
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div>
+                                <label htmlFor="name">First Name*</label>
+                            </div>
+                            <app-vr-input pInputText [control]="firstname" type="text" name="firstname" id="firstname" placeholder="First Name" ></app-vr-input>
+                        </div>
+                    </div>
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div>
+                                <label htmlFor="lastname">Last Name*</label>
+                            </div>
+                            <app-vr-input pInputText [control]="lastname" type="text" name="lastname" id="lastname" placeholder="Last Name" ></app-vr-input>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div>
+                                <label htmlFor="city">City*</label>
+                            </div>
+                            <select id="city" name="city" formControlName="city">
+                                <option *ngFor="let option of cities" [value]="option.name">{{ option.name }}</option>
+                            </select>
+                            
+                        </div>
+                    </div>
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div>
+                                <label htmlFor="phone">Phone Number*</label>
+                            </div>
+                            <app-vr-input pInputText [control]="phone_no" type="text" name="phone_no" id="phone_no" placeholder="Phone number" ></app-vr-input>
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div>
+                                <label htmlFor="password">Email*</label>
+                            </div>
+                            <app-vr-input pInputText [control]="email" type="text" name="email" id="email" placeholder="Email" ></app-vr-input>
+                            
+                        </div>
+                    </div>
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div>
+                                <label htmlFor="password">Password*</label>
+                            </div>
+                            <app-vr-input pInputText [control]="password" type="text" name="password" id="password" placeholder="Password" ></app-vr-input>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div>
+                                <label htmlFor="password">Wallet *</label>
+                            </div>
+                            <app-vr-input pInputText [control]="balance" type="text" name="balance" id="balance" placeholder="Wallet" ></app-vr-input>
+                            
+                        </div>
+                    </div>
+                    <!-- <div class="card-input">
+                        <div class="form-group">
+                            <div>
+                                <label htmlFor="city">Vehicle Type*</label>
+                            </div>
+                            <p-dropdown formControlName="city" [options]="cities" optionLabel="name" class="dropdown" placeholder="Select a Vehicle Type"></p-dropdown>
+                           
+                        </div>
+                    </div> -->
+                </div>
+                
+                <!-- <div class="btn"> -->
+                    <button type="submit" label="submit">
+                       Add 
+                    </button>
+                    <button type="submit" label="submit" class="button">
+                       Cancel
+                    </button>
+                <!-- </div> -->
+              </form>
+            </div>
+           </div>
+           <!-- <div class="card"> -->
+            <!-- <div class="card-title">
+                <h5>Add Bank Details</h5>
+            </div> -->
+            <!-- <div class="card-body">
+                <form [formGroup]="adminForm" (ngSubmit)="onSubmit()">
+                <div class="container">
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div>
+                                <label htmlFor="name">Account Holder Name*</label>
+                            </div>
+                            <input pInputText pKeyFilter="int" placeholder="Account Holder Name"  />
+                           
+                        </div>
+                    </div>
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div>
+                                <label htmlFor="lastname">Account Number*</label>
+                            </div>
+                            <input pInputText pKeyFilter="int" placeholder="Account Number"  />
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div>
+                                <label htmlFor="phone">Name of Bank*</label>
+                            </div>
+                            <input pInputText pKeyFilter="int" placeholder="Name of Bank"  />
+                           
+                        </div>
+                    </div>
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div>
+                                <label htmlFor="phone">Bank Location*</label>
+                            </div>
+                            <input pInputText pKeyFilter="int" placeholder="Bank Location"  />
+                         
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div>
+                                <label htmlFor="password">Payment Email*</label>
+                            </div>
+                            <input pInputText pKeyFilter="int" placeholder="Payment Email"  />
+                           
+                        </div>
+                    </div>
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div>
+                                <label htmlFor="password">Bank Sort Code*</label>
+                            </div>
+                            <input pInputText pKeyFilter="int" placeholder="Bank Sort Code"  />
+                        
+                        </div>
+                    </div>
+                </div>
+                    <button type="submit" label="submit">
+                       Add 
+                    </button>
+                    <button type="submit" label="submit" class="button">
+                       Cancel
+                    </button>
+    
+              </form>
+            </div> -->
+           <!-- </div> -->
+        </div>
+    </div>
+    <div class="footer"></div>
+
+</div>

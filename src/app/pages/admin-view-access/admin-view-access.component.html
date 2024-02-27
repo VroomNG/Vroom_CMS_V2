@@ -1,0 +1,71 @@
+<div class="main-container">
+    <div class="header">
+        <div class="view-admin-grid">
+            <div class="container">
+                <div class="card">
+                    <div class="grid-header">
+                        <div class="title">
+                            <h6>Admin Access Trail</h6>
+                        </div>
+                        <div class="search">
+                            <!-- <div class="p-input-icon-left">
+                                <i class="pi pi-search"></i>
+                                <input type="text" pInputText placeholder="Search"
+                                [(ngModel)]="searchText"
+                                (input)="applyFilter()"
+                                >           
+                            </div> -->
+                            <button (click)="clear()" class="clr"><i class="fa-solid fa-arrows-rotate"></i></button> 
+                        </div>
+                        
+                        <div class="export">
+                            <button class="button" type="submit" 
+                            label="submit"  (click)="exportExcel()">
+                                Export
+                             </button>
+                        </div>
+                    </div> 
+                    <div>
+                        <app-loader *ngIf="showLoader"></app-loader>
+                        <p-table *ngIf="!showLoader" 
+                            [value]="admin_access_trail"
+                            [paginator]="true"
+                            [rows]="10"
+                            [showCurrentPageReport]="false"
+                            [tableStyle]="{ 'min-width': '30rem' }"
+                            currentPageReportTemplate=""
+                            [rowsPerPageOptions]="[10, 25, 50]"
+                        >
+                            <ng-template pTemplate="header">
+                                <tr style="height: 3rem; border-color: #abb4ce80; border-top-width: 0.2px; border-bottom-width:0.2px ;">
+                                    <th style="width:5%">ID</th>
+                                    <th style="width:20%">EMAIL</th>
+                                    <th style="width:10%">ACCESS TIME</th>
+                                    <th style="width:10%">ACTION </th>
+            
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-admin_access_trail >
+                                <tr style="height: 3rem; border-color: #abb4ce80; border-top-width: 0.2px; border-bottom-width:0.2px ">
+                                    <td>{{admin_access_trail.ID}}</td>
+                                    <td>{{admin_access_trail.login}}</td>
+                                    <td>{{admin_access_trail.access_time  | date:'short':'UTC'}}</td>
+                                    <td>{{admin_access_trail.action}}</td>
+                                </tr>
+                            </ng-template>
+                            
+                                <ng-template pTemplate="paginatorleft">
+                                    <!-- <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button> -->
+                                </ng-template>
+                                <ng-template pTemplate="paginatorright">
+                                    <!-- <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button> -->
+                                </ng-template>
+                        </p-table>  
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </div>
+       
+    <div class="footer"></div>
+</div>

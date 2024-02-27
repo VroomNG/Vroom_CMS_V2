@@ -1,0 +1,229 @@
+<app-vr-alert *ngIf="showAlert" [color]="alertColor">
+    {{ alertMsg }}
+</app-vr-alert>
+<div class="main-container">
+    <div class="header">
+        <app-loader *ngIf="!drivers"></app-loader>
+        <form class="add-partners-form">
+            <div class="card-1">
+                <div class="card-title">
+                    <h5>Edit Rider</h5>
+                </div>
+                <div class="card-body">
+                    <div class="container">
+                        <div class="card-input">
+                            <div class="form-group">
+                                <div>
+                                    <label htmlFor="name">First Name*</label>
+                                </div>
+                                <input type="text" [(ngModel)]="drivers.firstname" name="firstname" 
+                                class="form-control form-control-alternative" placeholder="First name" value="{{drivers.firstname}}">
+                            </div>
+                        </div>
+                        <div class="card-input">
+                            <div class="form-group">
+                                <div>
+                                    <label htmlFor="lastname">Last Name*</label>
+                                </div>
+                                <input type="text"  [(ngModel)]="drivers.lastname" name="lastname" 
+                                class="form-control form-control-alternative" placeholder="Last name" value="{{drivers.lastname}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="card-input">
+                            <div class="form-group">
+                                <div>
+                                    <label htmlFor="city">City*</label>
+                                </div>
+                                <input type="text" [(ngModel)]="drivers.city" name="city" 
+                                class="form-control form-control-alternative" placeholder="City" value="{{drivers.city}}">        
+                            </div>
+                        </div>
+                        <div class="card-input">
+                            <div class="form-group">
+                                <div>
+                                    <label htmlFor="phone">Phone Number*</label>
+                                </div>
+                                <input type="text" [(ngModel)]="drivers.Phone_no" name="phone number" 
+                                class="form-control form-control-alternative" placeholder="Phone Number" value="{{drivers.Phone_no}}">
+                            
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="card-input">
+                            <div class="form-group">
+                                <div>
+                                    <label htmlFor="password">Email*</label>
+                                </div>
+                                <input type="text" [(ngModel)]="drivers.email" name="email" 
+                                class="form-control form-control-alternative" placeholder="Email" value="{{drivers.email}}" readonly="true">
+                                
+                            </div>
+                        </div>
+                        <div class="card-input">
+                            <div class="form-group">
+                                <div>
+                                    <label htmlFor="password">Password*</label>
+                                </div>
+                                <input type="text" [(ngModel)]="drivers.password" name="password" 
+                                class="form-control form-control-alternative" placeholder="Password" value="{{drivers.password}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="card-input">
+                            <div class="form-group">
+                                <div>
+                                    <label htmlFor="password">Licence Number*</label>
+                                </div>
+                                <input type="text" name="licence_no" 
+                                class="form-control form-control-alternative" placeholder="Licence" value="{{drivers.licence_no}}">
+                            </div>
+                        </div>
+                        <!-- <div class="card-input">
+                            <div class="form-group">
+                                <div>
+                                    <label htmlFor="vehicle_type ">Vehicle Type*</label>
+                                </div>
+                                <select id="vehicle_type" name="vehicle_type " formControlName="vehicle_type">
+                                    <option *ngFor="let option of vehicles" [value]="option.name">{{ option.name }}</option>
+                                </select>                            
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="card-1">
+                <div class="card-title">
+                    <h5>Add Bank Details</h5>
+                </div>
+                <div class="card-body">
+                    <div class="container">
+                        <div class="card-input">
+                            <div class="form-group">
+                                <div>
+                                    <label htmlFor="holder_name">Account Holder Name*</label>
+                                </div>
+                                <input type="text"  name="password" 
+                                class="form-control form-control-alternative" placeholder="Holder Name" value="{{drivers.holder_name}}">
+                            </div>
+                        </div>
+                        <div class="card-input">
+                            <div class="form-group">
+                                <div>
+                                    <label htmlFor="account_number">Account Number*</label>
+                                </div>
+                                <input type="text" name="account_number"
+                                class="form-control form-control-alternative" placeholder="Account Number" value="{{drivers.account_number}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="card-input">
+                            <div class="form-group">
+                                <div>
+                                    <label htmlFor="bank_name">Name of Bank*</label>
+                                </div>
+                                <input type="text" name="bank_name"
+                                class="form-control form-control-alternative" placeholder="Bank Name" value="{{drivers.bank_name}}">
+                                
+                            </div>
+                        </div>
+                        <div class="card-input">
+                            <div class="form-group">
+                                <div>
+                                    <label htmlFor="location">Bank Location*</label>
+                                </div>
+                                <input type="text"  name="location" 
+                                class="form-control form-control-alternative" placeholder="Bank Location" value="{{drivers.location}}">
+                            
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="card-input">
+                            <div class="form-group">
+                                <div>
+                                    <label htmlFor="payment_email">Payment Email*</label>
+                                </div>
+                                <input type="text"  name="payment_email"
+                                class="form-control form-control-alternative" placeholder="Payment Email" value="{{drivers.payment_email}}">
+                                
+                            </div>
+                        </div>
+                        <div class="card-input">
+                            <div class="form-group">
+                                <div>
+                                    <label htmlFor="IFSC_code">Bank Sort Code*</label>
+                                </div>
+                                <input type="text" name="sort_code" 
+                                class="form-control form-control-alternative" placeholder="Bank Sort Code" value="{{drivers.IFSC_code}}">     
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            <div class="card-1">
+                <div class="card-title">
+                    <h5>Documents:</h5>
+                </div>
+                <div class="card-body">
+                    <div class="container">
+                        <div class="card-input">
+                            <div class="form-group">
+                                <div>
+                                    <label htmlFor="licence_docu">Upload Licence*</label>
+                                </div>
+                                <input type="file" (change)="onFileSelected($event)" accept="image/pdf*" id="licence_docu" name="licence_docu">
+                              
+                            </div>
+                        </div>
+                        <div class="card-input">
+                            <div class="form-group">
+                                <div>
+                                    <label htmlFor="Insurance_docu">Upload Insurance*</label>
+                                </div>
+                                <input type="file" (change)="onFileSelected1($event)" accept="image/pdf*" id="insurance_docu" name="insurance_docu">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="card-input">
+                            <div class="form-group">
+                                <div>
+                                    <label htmlFor="vehicle_docu">Licence documents*</label>
+                                </div>
+                                <input type="file" (change)="onFileSelected2($event)" accept="image/pdf*" id="vehicle_docu" name="vehicle_docu">
+                            </div>
+                        </div>
+                        <div class="card-input">
+                            <div class="form-group">
+                                <div>
+                                    <label htmlFor="multi-docu">Other Documents*</label>
+                                </div>
+                                <input type="file" (change)="onFileSelected3($event)" accept="image/pdf*" id="multi_docu" name="multi_docu">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="button_container">
+                        <button type="submit" label="submit" class="button btn-primary" 
+                        (click)="updateDriver()"
+                         >
+                            Update
+                        </button>
+                        <button type="submit" label="submit" class="del-btn btn-danger" 
+                        (click)="deleteDriver()"
+                        >
+                            Delete
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>        
+    </div>
+    <div class="footer"></div>
+
+</div>

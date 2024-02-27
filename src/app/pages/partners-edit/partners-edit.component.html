@@ -1,0 +1,245 @@
+<app-vr-alert *ngIf="showAlert" [color]="alertColor">
+    {{ alertMsg }}
+</app-vr-alert>
+<div class="main-container">
+
+    <div class="header">
+        <app-loader *ngIf="!partners"></app-loader>
+        <form class="add-partners-form" *ngIf="partners">
+            <div class="card-1">
+                <div class="card-title">
+                    <h5>Update Partner</h5>
+                </div>
+                <div class="card-body">
+                    
+                    <div class="container">
+                        <div class="card-input">
+                            <div class="form-group">
+                                <div>
+                                    <label htmlFor="name">Organisation Name*</label>
+                                </div>
+                                <input type="text" id="input-firstname" [(ngModel)]="partners.firstname" name="firstname" class="form-control form-control-alternative" placeholder="First name" value="{{partners.firstname}}">
+                            </div>
+                        </div>
+                        <div class="card-input">
+                            <div class="form-group">
+                                <div>
+                                    <label htmlFor="lastname">Contact Person*</label>
+                                </div>
+                                <input type="text" id="input-lastname" [(ngModel)]="partners.lastname" name="lastname" class="form-control form-control-alternative" placeholder="Last name" value="{{partners.lastname}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="card-input">
+                            <div class="form-group">
+                                <div>
+                                    <label htmlFor="city">City*</label>
+                                </div>
+                                <input type="text" id="input-city" [(ngModel)]="partners.city" name="city" class="form-control form-control-alternative" placeholder="city" value="{{partners.city}}">
+                                
+                            </div>
+                        </div>
+                        <div class="card-input">
+                            <div class="form-group">
+                                <div>
+                                    <label htmlFor="phone">Phone Number*</label>
+                                </div>
+                                <input type="text" id="phone" [(ngModel)]="partners.Phone_no" name="phone_no" class="form-control form-control-alternative" placeholder="PhoneNuber" value="{{partners.Phone_no}}">
+                            
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="card-input">
+                            <div class="form-group">
+                                <div>
+                                    <label htmlFor="password">Email*</label>
+                                </div>
+                                <input type="text" id="email" [(ngModel)]="partners.email" name="email" class="form-control form-control-alternative" placeholder="Email" value="{{partners.email}}" readonly="true">
+                                
+                            </div>
+                        </div>
+                        <div class="card-input">
+                            <div class="form-group">
+                                <div>
+                                    <label htmlFor="password">Password*</label>
+                                </div>
+                                <input type="text" id="input-password" [(ngModel)]="partners.password" name="password" class="form-control form-control-alternative" placeholder="Password" value="{{partners.password}}">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="container">
+                        <div class="card-input">
+                            <div class="form-group">
+                                <div>
+                                    <label htmlFor="password">Supervisor Reference *</label>
+                                </div>
+                                <input type="text" id="input-supervisor" [(ngModel)]="partners.IFSC_code" name="supervisor" class="form-control form-control-alternative" placeholder="Supervisor" value="{{partners.IFSC_code}}">
+                            </div>
+                        </div>
+                        <div class="card-input">
+                        </div>
+                    </div> -->
+                </div> 
+            </div>
+            <div class="card-1">
+                <div class="card-title">
+                    <h5>Update Bank Details</h5>
+                </div>
+                <div class="card-body">
+                   
+                    <div class="container">
+                        <div class="card-input">
+                            <div class="form-group">
+                                <div>
+                                    <label htmlFor="holder_name">Account Holder Name*</label>
+                                </div>
+                                <input type="text" id="input-holder-name" [(ngModel)]="partners.holder_name" name="holder_name" class="form-control form-control-alternative" placeholder="Holder Name" value="{{partners.holder_name}}">
+                            </div>
+                        </div>
+                        <div class="card-input">
+                            <div class="form-group">
+                                <div>
+                                    <label htmlFor="account_number">Account Number*</label>
+                                </div>
+                                <input type="text" id="input-account-number" [(ngModel)]="partners.account_number" name="account number" class="form-control form-control-alternative" placeholder="Account Number" value="{{partners.account_name}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="card-input">
+                            <div class="form-group">
+                                <div>
+                                    <label htmlFor="bank_name">Name of Bank*</label>
+                                </div>
+                                <input type="text" id="input-name-of-bank" [(ngModel)]="partners.bank_name" name="bank name" class="form-control form-control-alternative" placeholder="Bank Name" value="{{partners.bank_name}}">
+                                
+                            </div>
+                        </div>
+                        <div class="card-input">
+                            <div class="form-group">
+                                <div>
+                                    <label htmlFor="location">Bank Location*</label>
+                                </div>
+                                <input type="text" id="input-location" [(ngModel)]="partners.location" name="supervisor" class="form-control form-control-alternative" placeholder="Supervisor" value="{{partners.location}}">
+                            
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="card-input">
+                            <div class="form-group">
+                                <div>
+                                    <label htmlFor="payment_email">Payment Email*</label>
+                                </div>
+                                <input type="text" id="payment_email" [(ngModel)]="partners.payment_email" name="supervisor" class="form-control form-control-alternative" placeholder="Supervisor" value="{{partners.payment_email}}">
+                                
+                            </div>
+                        </div>
+                        <div class="card-input">
+                            <div class="form-group">
+                                <div>
+                                    <label htmlFor="IFSC_code">Bank Sort Code*</label>
+                                </div>
+                                <input type="text" id="input-payment_wmail" [(ngModel)]="partners.IFSC_code" name="supervisor" class="form-control form-control-alternative" placeholder="Supervisor" value="{{partners.IFSC_code}}">
+                                
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="button_container">
+                        <button type="submit" label="submit" class="button btn-primary" 
+                        (click)="update()"
+        
+                        >
+                            Update
+                        </button>
+                        <button type="submit" label="submit" class="del-btn btn-danger" 
+                        (click)="deletePartner()"
+                        >
+                            Delete
+                        </button>
+                    </div>
+                </div>
+            </div> 
+        </form>
+
+        <!-- <div class="card-1">
+            <div class="card-title">
+                <h5>Add Bank Details</h5>
+            </div>
+                <div class="container">
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div>
+                                <label htmlFor="name">Account Holder Name*</label>
+                            </div>
+                            <input pInputText pKeyFilter="int" placeholder="Account Holder Name"  />
+                           
+                        </div>
+                    </div>
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div>
+                                <label htmlFor="lastname">Account Number*</label>
+                            </div>
+                            <input pInputText pKeyFilter="int" placeholder="Account Number"  />
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div>
+                                <label htmlFor="phone">Name of Bank*</label>
+                            </div>
+                            <input pInputText pKeyFilter="int" placeholder="Name of Bank"  />
+                           
+                        </div>
+                    </div>
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div>
+                                <label htmlFor="phone">Bank Location*</label>
+                            </div>
+                            <input pInputText pKeyFilter="int" placeholder="Bank Location"  />
+                         
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div>
+                                <label htmlFor="password">Payment Email*</label>
+                            </div>
+                            <input pInputText pKeyFilter="int" placeholder="Payment Email"  />
+                           
+                        </div>
+                    </div>
+                    <div class="card-input">
+                        <div class="form-group">
+                            <div>
+                                <label htmlFor="password">Bank Sort Code*</label>
+                            </div>
+                            <input pInputText pKeyFilter="int" placeholder="Bank Sort Code"  />
+                        
+                        </div>
+                    </div>
+                </div>
+                <div class="button_container">
+                    <button type="submit" label="submit">
+                        Add 
+                    </button>
+                    <button type="submit" label="submit" class="button">
+                        Cancel
+                    </button>
+                </div>
+                 
+        </div> -->
+    </div>
+    <div class="footer"></div>
+
+</div>

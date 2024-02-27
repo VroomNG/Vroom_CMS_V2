@@ -1,0 +1,23 @@
+.form-input {
+//    display: block;
+   width: 95%;
+   padding: 8px 10px;
+   color: rgba(128, 128, 128, 0.808);
+   border:color( rgb(39, 39, 39)) 80px;
+   transition: 500ms;
+}
+
+.form-error {
+    color: red;
+    font-size: 10px;
+    margin-bottom: -2px;
+    font-weight: 500;
+
+}
+::ng-container {
+    background-color: green;
+}
+
+.container {
+    background-color: green;
+}
