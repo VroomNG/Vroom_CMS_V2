@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';;
-// import { AuthService } from 'src/app/service/auth.service';
+import { ActivatedRoute } from '@angular/router';
 import { UsersService } from 'src/app/service/users.service';
 import {Router} from '@angular/router';
 
@@ -20,15 +20,25 @@ export class ForgotPasswordOtpComponent implements OnInit {
   alertMsg = 'Please wait! we are logging you in.'
   alertColor = 'info'
   inSubmission = false
+
+  emailParam!: string;
+  otpValue: string = '';
+
   resetDetails:any;
 
     constructor( 
       public router: Router,
+      private activatedRoute: ActivatedRoute,
       private users: UsersService
     ) { }
   
       ngOnInit() {
         const storedUserDetails = localStorage.getItem('resetDetails');
+        this.activatedRoute.params.subscribe(params => {
+          const email = params['email'];
+          this.emailParam = email
+          console.log(email)
+        });
     // check if the gotten items exists in local storage
       if (storedUserDetails) {
       // Parse the storedUserDetails JSON string to an object
@@ -50,20 +60,14 @@ export class ForgotPasswordOtpComponent implements OnInit {
       ]; 
       }
 
-      OTPcode!:string;
+      // OTPcode!:string;
       user_Type_retrieved!:string
 
-      // OTPForm = new FormGroup({
-      //   OTPcode: this.OTPcode,
-      //   // user_type: this.user_Type_retrieved,
-      // })
-
-      async submitEMail(){
+    async submitOTP(){
 
       this.showAlert = true;
-      // console.log(this.OTPForm.value)
       const email = this.resetDetails.email
-      const OTPcode = this.OTPcode
+      const OTPcode = this.otpValue
       const  user_type = this.user_Type_retrieved
       console.log(email),
       console.log(OTPcode)
@@ -71,7 +75,7 @@ export class ForgotPasswordOtpComponent implements OnInit {
 
       const credentials = {
         user_type: user_type,
-        OTPcode: this.OTPcode
+        OTPcode: this.otpValue
       }
 
       console.log(credentials)
@@ -86,27 +90,11 @@ export class ForgotPasswordOtpComponent implements OnInit {
           console.log(res)
           if(res.code == "100"){
             window.alert('Incorrect OTP');
-            // this.alertMsg = res.message
-            // this.alertColor = 'danger'
             this.inSubmission = false
           } 
           else if(res.code == "200"){
             window.alert('OTP Verified')
             this.router.navigate(['/forgot-password-update']) 
-            // this.alertMsg = "OTP Sent"
-            // this.alertColor = "success"
-            // const clrDetails = 'resetDetails';
-            // if (localStorage.getItem(clrDetails)) {
-            //   window.alert('about to clear storage')
-            //   localStorage.removeItem(clrDetails);
-            //   console.log(`${clrDetails} cleared from local storage.`);
-            //   this.router.navigate(['/forgot-password-update']) 
-            // }
-            
-          //   setTimeout(() => {
-          //   // localStorage.clear()
-            
-          // }, 1600)
           }
 
         }
@@ -120,5 +108,10 @@ export class ForgotPasswordOtpComponent implements OnInit {
 
     }
     
+    handleOtpChange(otp: string) {
+      this.otpValue = otp;
+      console.log('OTP:', this.otpValue);
+      // You can perform any further processing with the OTP value here
+    }
 
 }

@@ -7,6 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { InputComponent } from '../../layouts/shared/input/input.component';
 import { AlertsComponent } from '../../layouts/shared/alerts/alerts.component';
+import { OtpFieldComponent } from '../shared/otp-field/otp-field.component';
 
 import { LoginComponent } from '../../pages/login/login.component';
 import { RegisterComponent } from '../../pages/register/register.component';
@@ -31,7 +32,8 @@ import { ForgotPasswordUpdateComponent } from 'src/app/pages/forgot-password-upd
     ChangePasswordComponent,
     ForgotPasswordComponent,
     ForgotPasswordOtpComponent,
-    ForgotPasswordUpdateComponent 
+    ForgotPasswordUpdateComponent,
+    OtpFieldComponent
   ]
 })
 export class AuthLayoutModule {

@@ -12,7 +12,7 @@ export const AuthLayoutRoutes: Routes = [
     { path: 'register',  component: RegisterComponent },
     { path: 'change-password', component: ChangePasswordComponent },
     { path: 'forgot-password', component: ForgotPasswordComponent },
-    { path: 'forgot-password-otp', component: ForgotPasswordOtpComponent },
+    { path: 'forgot-password-otp/:email', component: ForgotPasswordOtpComponent },
     { path: 'forgot-password-update', component: ForgotPasswordUpdateComponent },
 ];
 

@@ -42,7 +42,7 @@ export class ForgotPasswordComponent implements OnInit {
         ]; 
       }
 
-      user_type = new FormControl('',[Validators.required, Validators.minLength(3)])
+      user_type = new FormControl('',[Validators.required, Validators.minLength(1)])
       // // email = new FormControl('',[Validators.required, Validators.minLength(3)])
       email = ''
 
@@ -88,9 +88,11 @@ export class ForgotPasswordComponent implements OnInit {
           else if(res.code == "200"){
             window.alert('OTP Sent')
             this.users.setResetPasswordResponse(resetDetails)
+            const email = this.email
             // this.alertMsg = "OTP Sent"
             // this.alertColor = "success"
-            this.router.navigate(['/forgot-password-otp']); 
+            this.router.navigate([`/forgot-password-otp/${email}`]);
+            // <a routerLink="/users/{{admins.id}}/edit"> 
 
           //   setTimeout(() => {
           //   // localStorage.clear()

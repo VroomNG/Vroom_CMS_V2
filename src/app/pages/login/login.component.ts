@@ -13,7 +13,8 @@ export class LoginComponent implements OnInit {
   showAlert = false;
   alertMsg = 'Please wait! we are logging you in.'
   alertColor = 'info'
-  inSubmission = false
+  inSubmission = false;
+  hidePassword: boolean = true;
   
     credentials = {
       email: '',
@@ -67,23 +68,6 @@ export class LoginComponent implements OnInit {
       }, 1600)
     }
 
-    togglePasswordVisibility() {
-      const passwordInput = document.querySelector('.password-input input') as HTMLInputElement;
-      const eyeIcon = document.querySelector('.eye-icon');
-    
-      if (passwordInput && eyeIcon) {
-        if (passwordInput.type === 'password') {
-          passwordInput.type = 'text';
-          eyeIcon.classList.remove('fa-eye');
-          eyeIcon.classList.add('fa-eye-slash');
-        } else {
-          passwordInput.type = 'password';
-          eyeIcon.classList.remove('fa-eye-slash');
-          eyeIcon.classList.add('fa-eye');
-        }
-      }
-    }
-    
     
     
     
