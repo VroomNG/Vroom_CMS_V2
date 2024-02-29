@@ -14,14 +14,17 @@ interface Users {
   styleUrls: ['./forgot-password-update.component.scss']
 })
 export class ForgotPasswordUpdateComponent implements OnInit {
- 
-  
+
   // userType!: Users[] |  undefined;
   showAlert = false;
   alertMsg = 'Please wait! we are logging you in.'
   alertColor = 'info'
   inSubmission = false
   resetDetails:any;
+  hidePassword: boolean = true;
+  password: any;
+  confirmPassword: string = '';
+
 
     constructor( 
       public router: Router,
@@ -45,10 +48,10 @@ export class ForgotPasswordUpdateComponent implements OnInit {
     //  this.user_Type_retrieved = new FormControl(this.user_Type_retrieved,[Validators.required, Validators.minLength(4)])
       }
 
-      password:any;
+      // password:any;
       user_Type_retrieved!:string
 
-      async submitEMail(){
+      async resetPassword(){
         const email = this.resetDetails.email
         const password = this.password
         const  user_type = this.user_Type_retrieved
@@ -72,28 +75,13 @@ export class ForgotPasswordUpdateComponent implements OnInit {
               console.log(res)
               if(res.code == "100"){
                 window.alert('Password failed');
-                // this.alertMsg = res.message
-                // this.alertColor = 'danger'
                 this.inSubmission = false
               } 
               else if(res.code == "200"){
                 window.alert('Reset Successful Now login')
                 this.router.navigate(['/login']) 
                 localStorage.clear()
-                // this.alertMsg = "OTP Sent"
-                // this.alertColor = "success"
-                // const clrDetails = 'resetDetails';
-                // if (localStorage.getItem(clrDetails)) {
-                //   window.alert('about to clear storage')
-                //   localStorage.removeItem(clrDetails);
-                //   console.log(`${clrDetails} cleared from local storage.`);
-                //   this.router.navigate(['/forgot-password-update']) 
-                // }
                 
-              //   setTimeout(() => {
-              //   // localStorage.clear()
-                
-              // }, 1600)
               }
     
             }
