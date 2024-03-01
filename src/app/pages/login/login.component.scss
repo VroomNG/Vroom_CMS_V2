@@ -19,6 +19,9 @@
     padding: 12px;
     width: 100%;
 }
+.form-controls::placeholder {
+    color: rgb(18, 18, 18);
+  }
 
 label {
     color: #344054;
