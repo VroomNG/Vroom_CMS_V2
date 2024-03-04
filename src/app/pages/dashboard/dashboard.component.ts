@@ -31,7 +31,7 @@ export class DashboardComponent implements OnInit {
         datasets: [
             {
                 label: 'Registered Users for this year',
-                backgroundColor: documentStyle.getPropertyValue('--blue-900'),
+                backgroundColor: documentStyle.getPropertyValue('--brand900'),
                 borderColor: documentStyle.getPropertyValue('--blue-500'),
                 data: [6, 3, 5, 24, 259, 8, 5,0,0,2,5,0]
             },

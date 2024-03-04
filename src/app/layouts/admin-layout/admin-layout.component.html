@@ -1,115 +1,27 @@
-<div class="main-container d-flex flex" style="height: 100vh;">
+<div class="main-container flex" style="height: 100vh;">
   <div class="sidebar h-full d-none d-lg-block d-xl-block d-xxl-block " style="width: 18%; height: 100%; "> 
     <app-sidebar></app-sidebar>
   </div> 
 
-  <div class="dashboard" style=" height: 100%;" [ngStyle]="{'width.%': isSmallScreen ? 100 : 82}">
-      <div class="navbar d-flex justify-content-center" style="height: 12%; width: 100%;">
-        <div class="container d-flex">
-          <div class="route-title d-flex  justify-content-start align-items-center" style="width: 70%;  height: 100%;">
-            <div class="mobile_sidebar ">
-              <nav class=" navbar-dark d-md-block lg-none d-xl-none">
-                <div class="container px-4 ">
-                  <!-- Collapse header -->
-                  <button class="navbar-toggler" type="button" (click)="isCollapsed=!isCollapsed"
-                     aria-controls="sidenav-collapse-main">
-                    <span class="navbar-toggler-icon"></span>
-                  </button>
-                  
-                  <div class="nav-list navbar-collapse position-absolute " 
-                    [ngbCollapse]="isCollapsed" id="sidenav-collapse-main">
-                    <div class="navbar-collapse-header d-md-block d-lg-none d-xl-none d-xxl-none">
-                      <div class="row">
-                        <div class="col-6  collapse-brand">
-                          <div class="logo">
-                            <a [hidden]="false" [routerLink]="['/']">
-                               <img src="./assets/img/brand/Logo.png" class="navbar-brand-img" alt="..." style="width: 150px;">
-                            </a>
-                         </div>
-                        </div>
-                        <div class="col-6 collapse-close">
-                            <button type="button" class="navbar-toggler" (click)="isCollapsed=!isCollapsed" >
-                              <span></span>
-                              <span></span>
-                            </button>
-                        </div>
-                      </div>
-                      <div class="row ">
-                        <div class="main-container">
-                          <div class="navbar-area">
-                             <div style="width:100%">
-                                   <div *ngFor="let routeInfo of ROUTES; let i = index">
-                                      <div class="dash-container">
-                                            <div class="container" (click)="toggleCarretDown(i)">  
-                                                  <div class="icon ">
-                                                    <a [hidden]="false" [routerLink]="routeInfo.path">
-                                                     <i class="{{routeInfo.icon}} text-primary"></i>
-                                                    </a>
-                                                  </div>
-                                                  <div class="navlink">
-                                                     <div class="title" style="margin-top: 4px; "> 
-                                                       <a [hidden]="false" [routerLink]="routeInfo.path">                              
-                                                             <p>{{routeInfo.title}}</p>
-                                                       </a>
-                                                     </div>
-                                                     <div *ngIf="routeInfo.children">
-                                                       <div class="d-flex">
-                                                          <div class="d-container">
-                                                             <div>
-                                                                <button class="carret-icon" (click)="toggleCarretDown(i)">                                    
-                                                                   <span *ngIf="i === openDropdown ">
-                                                                      <i class="fa-solid fa-caret-up"></i>
-                                                                   </span>
-                                                                   <span *ngIf="i !== openDropdown ">
-                                                                      <i class="fa-solid fa-caret-down"></i>
-                                                                   </span>
-                                                                </button>                     
-                                                              </div> 
-                                                          </div>
-                                                       </div>
-                                                    </div>
-                                                  </div>  
-                                            </div>  
-                                         <div class="dropdown" *ngIf="i === openDropdown">
-                                           <div *ngIf="routeInfo.children">
-                                              <div class="d-container" *ngFor="let child of routeInfo.children">
-                                                <div class=" d-flex" style="width: 200px; padding: auto; display: inline;">
-                                                   <div class="d-flex">
-                                                      <a [routerLink]="child.path" >
-                                                          <div class="children">
-                                                              <i class="{{child.icon}}"></i> 
-                                                              <span class="child-title"> {{child.title}} </span>
-                                                          </div>
-                                                      </a>
-                                                   </div>
-                                                </div>
-                                              </div> 
-                                           </div>
-                                         </div>              
-                                      </div>
-                                    </div>
-                             </div>
-                          </div>
-                        </div>                          
-                      </div>
-                    </div>                  
-                  </div>
-                </div>
-              </nav>
-            </div> 
+  <div class="dashboard h-full" [ngStyle]="{'width.%': isSmallScreen ? 100 : 82}">
+      <div class="h-[8%] w-full border-b-2 border-b-[#EEECF6] bg-white d-flex justify-content-end">
+        <div class="w-[75%] h-full"></div>
+        <div class=" w-[25%] h-full d-flex align-items-center">
+          
+            <div class="w-[40px] h-[40px] p-2 rounded-full mx-3 bg-[#F5F5F4] d-flex justify-content-center align-items-center">
+              <i class="fa-solid fa-bell text-[#57534E]"></i>
+            </div>
+      
+            <div (click)="pDropdown()" class="cursor-pointer d-flex align-items-center">
+              <img src="assets/img/theme/user.png" class="rounded-full cursor-pointer w-[40px]" /> 
+            <div *ngIf="userDetails" class=" text-black mx-2  ">
+              <p class="text-[14px] font-medium capitalize leading-4 text-[#344054]"> {{userDetails.firstname}} {{userDetails.lastname}} </p>
+              <p class="text-[12px] font-light leading-4 "> {{userDetails.email}} </p>
+            </div>
+            
           </div>
-
-          <div class="user-profile d-flex  justify-content-end align-items-center " style="width: 30%;  height: 100%;">
-              <div class="d-flex align-items-center justify-content-between">
-                <img src="assets/img/theme/user.png" class="rounded-circle" style="width: 34px; height: 34px;"/>
-                <div class="username pt-3 mx-2 " style="height: 100%;">
-                  <div (click)="pDropdown()" style="cursor: pointer;">
-                    <!-- <p>Tolulope Ajao</p> -->
-                    <div *ngIf="userDetails" class="user-name">
-                      <p> {{userDetails.firstname}} {{userDetails.lastname}} </p>
-                    </div>
-                  </div>
-                  <div class="profile-dropdown" *ngIf="showDropdown">
+        </div>
+        <div class="profile-dropdown" *ngIf="showDropdown">
                     <div class="cont1">
                       <div class="cont">
                         <div class="my-profile">
@@ -153,12 +65,7 @@
                         </div>    
                       </div>
                     </div>
-                  </div>
-                 
-                </div> 
-              </div>
-          </div>
-        </div>
+                  </div> 
       </div>
       <!-- < Dashboard dynamic content  -->
       <div class="main-content" style="height:90%">
