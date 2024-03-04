@@ -59,6 +59,7 @@ import { AppActionDriverVisibilityComponent } from '../../pages/app-action-drive
 import { AppActionDriverSettingsComponent } from '../../pages/app-action-driver-settings/app-action-driver-settings.component';
 import { AuthClassGuard } from 'src/app/helpers/auth-class.guard';
 import { DriversEditComponent } from 'src/app/pages/drivers-edit/drivers-edit.component';
+import { UsersComponent } from 'src/app/pages/users/users.component';
 
 export const AdminLayoutRoutes: Routes = [
    
@@ -117,8 +118,8 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'uninstalls', component: AppActionUninstallComponent, canActivate: [AuthClassGuard]},
     { path: 'driver-visibility-history', component: AppActionDriverVisibilityComponent, canActivate: [AuthClassGuard]},
     { path: 'manage-settings', component: AppActionDriverSettingsComponent, canActivate: [AuthClassGuard]},
-    { path: 'dashboard',      component: DashboardComponent, 
-    canActivate: [AuthClassGuard] 
-    },
+    { path: 'dashboard',      component: DashboardComponent,canActivate: [AuthClassGuard]}, 
+    { path: 'users',      component: UsersComponent,canActivate: [AuthClassGuard]} 
+    
     
 ];

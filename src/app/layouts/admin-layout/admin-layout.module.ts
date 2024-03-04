@@ -84,6 +84,7 @@ import { SearchPipe } from 'src/app/helpers/search.pipe';
 import { CheckboxModule } from 'primeng/checkbox';
 import { DialogModule } from 'primeng/dialog';
 import { SurgeEditComponent } from 'src/app/pages/surge-edit/surge-edit.component';
+import { UsersComponent } from 'src/app/pages/users/users.component';
 
 
 
@@ -170,7 +171,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
     DriversEditComponent,
     RidersEditComponent,
     SurgeEditComponent,
-    SearchPipe
+    SearchPipe,
+    UsersComponent
   ]
 })
 

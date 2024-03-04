@@ -19,7 +19,7 @@ export class SidebarComponent implements OnInit {
 
   ROUTES: RouteInfo[] = [
     { id: 0, path: '/dashboard', title: 'Dashboard', icon: 'fa fa-store', class: '', children: '' },
-    { id: 0.1, path: '/view-admin', title: 'Users', icon: 'fa-solid fa-user-tie', class: '', children: [] },
+    { id: 0.2, path: '/users', title: 'Users', icon: 'fa-solid fa-user-tie', class: '', children: [] },
     { id: 1, path: '/view-quest', title: 'Trips', icon: 'fa-solid fa-chess', class: '', children: [] },
     { id: 2, path: '/view-vehicle', title: 'Vehicles', icon: 'fa-solid fa-truck-monster text-primary', class: '', children: [] },
     { id: 3, path: '/view-partners', title: 'Review and Ratings', icon: ' fa-solid fa-handshake text-primary', class: '', children: [] },

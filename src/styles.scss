@@ -545,9 +545,6 @@ button,
 html [type='button'],
 [type='reset'],
 [type='submit']
-{
-    -webkit-appearance: button;
-}
 
 button::-moz-focus-inner,
 [type='button']::-moz-focus-inner,
@@ -570,9 +567,6 @@ input[type='date'],
 input[type='time'],
 input[type='datetime-local'],
 input[type='month']
-{
-    -webkit-appearance: listbox;
-}
 
 textarea
 {
@@ -622,7 +616,7 @@ progress
 {
     outline-offset: -2px;
 
-    -webkit-appearance: none;
+  
 }
 
 [type='search']::-webkit-search-cancel-button,
@@ -7199,7 +7193,7 @@ button.close
     border: 0;
     background-color: transparent;
 
-    -webkit-appearance: none;
+   
 }
 
 .modal-open
@@ -17140,7 +17134,7 @@ a.btn-icon-only
     border-radius: .375rem;
     background-color: #f6f9fc;
 
-    -moz-appearance: none;
+  
 }
 .btn-icon-clipboard:hover
 {
