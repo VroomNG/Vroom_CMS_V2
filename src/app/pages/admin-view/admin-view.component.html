@@ -1,39 +1,31 @@
-<div class="main-container">
+<div>
     <!-- item details dialog -->
-    <p-dialog [(visible)]="displayDialog" [modal]="true" [responsive]="true">
+    <!-- <p-dialog [(visible)]="displayDialog" [modal]="true" [responsive]="true">
         <div class="edit-form">
           <h3>Edit Admin</h3>
           <p>Admin ID: {{ editedAdmin1?.id }}</p>
           <p>Admin name: {{ editedAdmin1?.firstname }}</p>
         </div>
-      </p-dialog>
-
-    <div class="header">
-        <div class="view-admin-grid">
-            <div class="container">
-                <div class="card">
-                    <div class="grid-header">
-                        <div class="title">
-                            <h6>View Admin Details</h6>
-                        </div>
-                        <div class="search">
+      </p-dialog> -->
+    <div>
+                <div >
+                         <!-- <div class="search">
                             <div class="p-input-icon-left">
                                 <i class="pi pi-search"></i>
                                 <input type="text" pInputText placeholder="Search"
                                 [(ngModel)]="searchText"
                                 (input)="applyFilter()"
                                 >           
-                            </div>
-                            <button (click)="clear()" class="clr"><i class="fa-solid fa-arrows-rotate"></i></button> 
-                        </div>
+                            </div> -->
+                            <!-- <button (click)="clear()" class="clr"><i class="fa-solid fa-arrows-rotate"></i></button>  -->
+                     
                         
-                        <div class="export">
+                        <!-- <div class="export">
                             <button class="button" type="submit" 
                             label="submit"  (click)="exportExcel()">
                                 Export
                              </button>
-                        </div>
-                    </div> 
+                        </div> -->
                     <div>
                         <app-loader *ngIf="showLoader"></app-loader>
                         <p-table *ngIf="!showLoader" 
@@ -109,8 +101,4 @@
                     </div>
                 </div>
             </div>    
-        </div>
-    </div>
-       
-    <div class="footer"></div>
 </div>

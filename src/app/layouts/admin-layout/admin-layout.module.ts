@@ -84,12 +84,15 @@ import { SearchPipe } from 'src/app/helpers/search.pipe';
 import { CheckboxModule } from 'primeng/checkbox';
 import { DialogModule } from 'primeng/dialog';
 import { SurgeEditComponent } from 'src/app/pages/surge-edit/surge-edit.component';
-import { UsersComponent } from 'src/app/pages/users/users.component';
-
-
-
 
 import { GoogleMapsModule } from '@angular/google-maps';
+import { UsersComponent } from 'src/app/pages/users/users.component';
+import { TripMenuComponent } from 'src/app/pages/trip-menu/trip-menu.component';
+import { VehiclesMenuComponent } from 'src/app/pages/vehicles-menu/vehicles-menu.component';
+import { ReviewsMenuComponent } from 'src/app/pages/reviews-menu/reviews-menu.component';
+import { ActivityLogComponent } from 'src/app/pages/activity-log/activity-log.component';
+import { ExplorerMenuComponent } from 'src/app/pages/explorer-menu/explorer-menu.component';
+import { AppActionsMenuComponent } from 'src/app/pages/app-actions-menu/app-actions-menu.component';
 // import { ToastrModule } from 'ngx-toastr';
 
 
@@ -172,7 +175,13 @@ import { GoogleMapsModule } from '@angular/google-maps';
     RidersEditComponent,
     SurgeEditComponent,
     SearchPipe,
-    UsersComponent
+    UsersComponent,
+    TripMenuComponent,
+    VehiclesMenuComponent,
+    ReviewsMenuComponent,
+    ActivityLogComponent,
+    ExplorerMenuComponent,
+    AppActionsMenuComponent,
   ]
 })
 
