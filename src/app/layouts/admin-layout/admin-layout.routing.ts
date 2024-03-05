@@ -59,7 +59,14 @@ import { AppActionDriverVisibilityComponent } from '../../pages/app-action-drive
 import { AppActionDriverSettingsComponent } from '../../pages/app-action-driver-settings/app-action-driver-settings.component';
 import { AuthClassGuard } from 'src/app/helpers/auth-class.guard';
 import { DriversEditComponent } from 'src/app/pages/drivers-edit/drivers-edit.component';
+
 import { UsersComponent } from 'src/app/pages/users/users.component';
+import { TripMenuComponent } from 'src/app/pages/trip-menu/trip-menu.component';
+import { VehiclesMenuComponent } from 'src/app/pages/vehicles-menu/vehicles-menu.component';
+import { ReviewsMenuComponent } from 'src/app/pages/reviews-menu/reviews-menu.component';
+import { ActivityLogComponent } from 'src/app/pages/activity-log/activity-log.component';
+import { ExplorerMenuComponent } from 'src/app/pages/explorer-menu/explorer-menu.component';
+import { AppActionsMenuComponent } from 'src/app/pages/app-actions-menu/app-actions-menu.component';
 
 export const AdminLayoutRoutes: Routes = [
    
@@ -119,7 +126,13 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'driver-visibility-history', component: AppActionDriverVisibilityComponent, canActivate: [AuthClassGuard]},
     { path: 'manage-settings', component: AppActionDriverSettingsComponent, canActivate: [AuthClassGuard]},
     { path: 'dashboard',      component: DashboardComponent,canActivate: [AuthClassGuard]}, 
-    { path: 'users',      component: UsersComponent,canActivate: [AuthClassGuard]} 
+    { path: 'users',      component: UsersComponent,canActivate: [AuthClassGuard]} ,
+    { path: 'trips-menu',      component: TripMenuComponent,canActivate: [AuthClassGuard]} ,
+    { path: 'vehicles-menu',      component: VehiclesMenuComponent,canActivate: [AuthClassGuard]} ,
+    { path: 'reviews-menu',      component: ReviewsMenuComponent,canActivate: [AuthClassGuard]} ,
+    { path: 'activity-log',      component: ActivityLogComponent,canActivate: [AuthClassGuard]} ,
+    { path: 'e-menu',      component: ExplorerMenuComponent,canActivate: [AuthClassGuard]} ,
+    { path: 'app-actions-menu',      component: AppActionsMenuComponent,canActivate: [AuthClassGuard]} ,
     
     
 ];
