@@ -176,12 +176,12 @@ import { AppActionsMenuComponent } from 'src/app/pages/app-actions-menu/app-acti
     SurgeEditComponent,
     SearchPipe,
     UsersComponent,
-    TripMenuComponent,
-    VehiclesMenuComponent,
-    ReviewsMenuComponent,
-    ActivityLogComponent,
-    ExplorerMenuComponent,
-    AppActionsMenuComponent,
+    // TripMenuComponent,
+    // VehiclesMenuComponent,
+    // ReviewsMenuComponent,
+    // ActivityLogComponent,
+    // ExplorerMenuComponent,
+    // AppActionsMenuComponent,
   ]
 })
 
