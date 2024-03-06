@@ -19,6 +19,7 @@ export class AdminViewComponent implements OnInit {
  @Input() searchText: string = '';
 
  showNoResults:boolean = false;
+ moreActions:boolean = false;
 
 // variables
   admins!: any;
@@ -26,10 +27,9 @@ export class AdminViewComponent implements OnInit {
   displayDialog: boolean = false;
   showLoader = true;
   originalData = this.admins;
-  
-  editedRowId: number | null = null;
-  // date!: DatePipe;
-  // searchText:  string = '' 
+  selectedUserId:any = null;
+  selectedUser: any;
+
   userDetails:any
 
   //  lifecycle and constructor
@@ -53,6 +53,13 @@ export class AdminViewComponent implements OnInit {
     this.addAccessTrail()
   }
  
+  userAction(userId: any) {
+    if (this.selectedUserId === userId) {
+        this.selectedUserId = null; // Hide the card actions if the same user is clicked again
+    } else {
+        this.selectedUserId = userId; // Show the card actions for the clicked user
+    }
+}
   // functions
   addAccessTrail(){
     const {email} = this.userDetails
@@ -75,10 +82,9 @@ export class AdminViewComponent implements OnInit {
       }
     )
   }
-  applyFilter() {
-    
-    const inputField = this.searchText.trim();
 
+  applyFilter() {
+    const inputField = this.searchText.trim();
     if(inputField === ''){
       this.Admins.getAdmins().subscribe(
         (res:any)=> {
@@ -89,7 +95,6 @@ export class AdminViewComponent implements OnInit {
         this.admins = this.originalData
         // this.showNoResults = true
     }
-
     const filteredAdmins = this.admins.filter((admin:any) => {
       // Adjust the conditions based on your filtering requirements
       return (
@@ -103,7 +108,6 @@ export class AdminViewComponent implements OnInit {
     // Update the table data with the filtered results
     // If you are using server-side filtering, you may need to call an API here
     this.admins = filteredAdmins;
-    
     // Check if there are any results
         if (filteredAdmins.length  === 0) {
           setTimeout(() => {
@@ -116,11 +120,11 @@ export class AdminViewComponent implements OnInit {
         }
   }
  
-  // clickMe(){
-  //   // this.clickEvent.emit()
-  //   console.log('clicked me called from parent comp')
-  // }
-
+  showDialog(user: any) {
+    this.selectedUser = user;
+    this.displayDialog = true;
+  }
+ 
   clear() {
     this.searchText = '';
     this.Admins.getAdmins().subscribe(
@@ -152,14 +156,10 @@ export class AdminViewComponent implements OnInit {
 
     editAdmin(admin: IAdmin):any {
       this.editedAdmin1 = { ...admin }; // Create a copy to avoid modifying the original data; 
-      this.editedRowId = admin.id;
       this.displayDialog = true;
     }
 
-
-    toggleDialog(){
-        this.displayDialog = false
-    }
+  
 
 
 }

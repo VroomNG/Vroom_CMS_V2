@@ -1,57 +1,53 @@
-<div>
-    <!-- item details dialog -->
-    <!-- <p-dialog [(visible)]="displayDialog" [modal]="true" [responsive]="true">
-        <div class="edit-form">
-          <h3>Edit Admin</h3>
-          <p>Admin ID: {{ editedAdmin1?.id }}</p>
-          <p>Admin name: {{ editedAdmin1?.firstname }}</p>
-        </div> 
-      </p-dialog> -->
+<div class="w-full h-full">
+       <p-dialog [(visible)]="displayDialog" [modal]="true" [responsive]="true" class="absolute">
+            <div class="w-[80vh] h-[50vh]">
+                <h3>Edit Admin</h3>
+                <p>Admin ID: {{selectedUser?.id}}</p>
+                <p>Admin Name: {{selectedUser?.firstname}} {{selectedUser?.lastname}}</p>
+            </div>                                 
+        </p-dialog>
+    
     <div>
         <div >
             <div>
                 <app-loader *ngIf="showLoader"></app-loader>
                 <div *ngIf="showNoResults === true && !showLoader" class="w-full h-[80vh] flex items-center justify-center">
-                    <h1 class="font-bold text-5xl text-gray-200">No Match Found</h1>
+                    <h1 class="font-bold text-3xl text-gray-200">No Match Found</h1>
                 </div>
                         <p-table *ngIf="!showLoader && !showNoResults" 
                             [value]="admins"
                             [paginator]="true"
                             [rows]="10"
                             [showCurrentPageReport]="false"
-                            [tableStyle]="{ 'min-width': '50rem' }"
+                            [tableStyle]="{ 'min-width': '100%' }"
                             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                             [rowsPerPageOptions]="[10, 25, 50]"
                         >
                             <ng-template pTemplate="header">
-                                <tr style="height: 3rem; border-color: #abb4ce80; border-top-width: 0.2px; border-bottom-width:0.2px ;">
-                                    <th style="width:20%">FIRST NAME</th>
-                                    <th style="width:20%">LAST NAME</th>
-                                    <th style="width:25%">EMAIL</th>
-                                    <th style="width:15%">PHONE </th>
-                                    <th style="width:15%">ADMIN </th>
-                                    <th style="width:15%">ACTION </th>
+                                <tr style="height: 3rem; border-color: #FAFAF9; border-top-width: 0.2px; border-bottom-width:0.2px ;">
+                                    <th >Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Role </th>
+                                    <th>Last seen </th>
+                                    <th>Actions </th>
                                 </tr>
                             </ng-template>
                             <ng-template pTemplate="body" let-admins>
                                 <tr style="height: 3rem; border-color: #abb4ce80; border-top-width: 0.2px; border-bottom-width:0.2px ">
                                 
                                     <td>
-                                        {{admins.firstname}}
-                                    </td>
-                                    <td>
-                                        {{admins.lastname}}
+                                       <span class="capitalize">{{admins.firstname}}</span> <span class="capitalize"> {{admins.lastname}}</span>
                                     </td>
                                     <td>
                                         {{admins.email}}
                                     </td>
                                     <td>
-                                        <div *ngIf="admins.phone_no == null ">
-                                            no number
+                                        <div *ngIf="admins.phone_no === '' || admins.phone_no === null  ">
+                                            No number
                                         </div>
                                         <div *ngIf="admins.phone_no">
-                                            
-                                                    {{admins.phone_no}}
+                                            {{admins.phone_no}}
                                         </div>
                                     </td>
                                     <td>
@@ -65,15 +61,43 @@
                                         Partner
                                     </div>
                                     </td>
+                                    <td>
+                                        6:30pm 17/01/2024
+                                    </td>
                                     <td class="action">
                                         <span class="edit">
+                                            <div class="flex align-items-center justify-content-center gap-2">
+                                               <span (click)="userAction(admins.id)">
+                                                <button pButton pRipple type="button" icon="fa-solid fa-ellipsis-vertical" class="p-button-rounded p-button-text"></button>
+                                               </span>
+                                            </div>
+                                        </span>
+                                        <!-- <span class="edit">
                                             <div class="flex align-items-center justify-content-center gap-2">
                                                <a routerLink="/users/{{admins.id}}/edit">
                                                 <button pButton pRipple type="button" icon="fa-solid fa-pencil" class="p-button-rounded p-button-text"></button>
                                                </a>
                                             </div>
-                                        </span>
+                                        </span> -->
                                     </td>
+                                        
+                                    <div class="moreActions card  w-36 h-36 bg-white drop-shadow-xl absolute" *ngIf="selectedUserId === admins.id">
+                                        <div class="h-[33%] bg-[#FAFAF9] rounded-t-md flex items-center justify-center red-400">
+                                            <p class="font-medium">More Actions</p>
+                                        </div>
+                                        <div class="h-[32%] flex items-center border-y-[0.5px] border-[#EEECF6] justify-center ">
+                                            <span class="text-brand900 cursor-pointer hover:font-bold" (click)="showDialog(selectedUserId)" (click)="userAction(admins)">
+                                                <span class="hover:font-medium">View User</span> 
+                                            </span>
+                                        </div>
+                                        <div class="h-[32%] flex items-center justify-center">
+                                            <a routerLink="/users/{{admins.id}}/edit" class="hover:text-brand900">
+                                               <span class="hover:font-medium">Edit User</span> 
+                                            </a>
+                                        </div>
+                                     
+                                        
+                                    </div>
                                 </tr>
                             </ng-template>
                             
