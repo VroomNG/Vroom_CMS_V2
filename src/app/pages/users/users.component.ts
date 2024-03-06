@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { AdminViewComponent } from '../admin-view/admin-view.component';
 
 @Component({
   selector: 'app-users',
@@ -7,24 +8,42 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsersComponent implements OnInit {
 
+@ViewChild(AdminViewComponent) childRef!: AdminViewComponent;
+
  users = [
-    { id: 1, name: "admin", data: 'Data for User 1' },
-    { id: 2, name: "drivers", data: 'Data for User 2' },
-    { id: 3, name: "riders", data: 'Data for User 3' },
-    { id: 4, name: "partners", data: 'Data for User 4' },
+    { id: 1, name: "admin", },
+    { id: 2, name: "drivers", },
+    { id: 3, name: "riders",  },
+    { id: 4, name: "partners",  },
  ]
 
+ searchText: string = ''
+
  constructor(){}
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
+  ngOnInit() {
+    
   }
  
   activeIndex: number = 0;
-  activeUserData: string = this.users[0].data;
+  // activeUserData: string = this.users[0].data;
 
   setActive(index: number) {
     this.activeIndex = index;
-    this.activeUserData = this.users[index].data;
+    // this.activeUserData = this.users[index].data;
   }
+
+
+  // clickMe(){
+  //   // connect me to a child component
+  //   this.childRef.clickMe();
+  //   this.searchText = "changed by child";
+  // }
+
+  applySearch(){
+    this.childRef.applyFilter()
+  }
+
+
+
 
 }

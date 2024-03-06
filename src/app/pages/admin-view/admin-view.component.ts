@@ -1,5 +1,5 @@
 // Dependecies
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input, Output, EventEmitter } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { IAdmin } from 'src/app/model/admins';
 import { AdminService } from 'src/app/service/admin.service';
@@ -15,8 +15,13 @@ import * as FileSaver from 'file-saver';
 })
 
 export class AdminViewComponent implements OnInit {
+  
+ @Input() searchText: string = '';
+
+ showNoResults:boolean = false;
+
 // variables
-  admins: IAdmin[] = [];
+  admins!: any;
   editedAdmin1: IAdmin | any;
   displayDialog: boolean = false;
   showLoader = true;
@@ -24,7 +29,7 @@ export class AdminViewComponent implements OnInit {
   
   editedRowId: number | null = null;
   // date!: DatePipe;
-  searchText:  string = '' 
+  // searchText:  string = '' 
   userDetails:any
 
   //  lifecycle and constructor
@@ -48,7 +53,6 @@ export class AdminViewComponent implements OnInit {
     this.addAccessTrail()
   }
  
-
   // functions
   addAccessTrail(){
     const {email} = this.userDetails
@@ -72,7 +76,21 @@ export class AdminViewComponent implements OnInit {
     )
   }
   applyFilter() {
-    const filteredAdmins = this.admins.filter((admin) => {
+    
+    const inputField = this.searchText.trim();
+
+    if(inputField === ''){
+      this.Admins.getAdmins().subscribe(
+        (res:any)=> {
+          this.admins = res.data
+          this.showLoader = false;
+          // this.showNoResults = false;
+         })
+        this.admins = this.originalData
+        // this.showNoResults = true
+    }
+
+    const filteredAdmins = this.admins.filter((admin:any) => {
       // Adjust the conditions based on your filtering requirements
       return (
         admin.firstname.toLowerCase().includes(this.searchText.toLowerCase()) ||
@@ -85,7 +103,23 @@ export class AdminViewComponent implements OnInit {
     // Update the table data with the filtered results
     // If you are using server-side filtering, you may need to call an API here
     this.admins = filteredAdmins;
+    
+    // Check if there are any results
+        if (filteredAdmins.length  === 0) {
+          setTimeout(() => {
+            this.showNoResults = true; 
+          }, 1000);
+         
+          // Set a flag to show "No Search Result" message
+        } else {
+          this.showNoResults = false; // Hide the "No Search Result" message if there are results
+        }
   }
+ 
+  // clickMe(){
+  //   // this.clickEvent.emit()
+  //   console.log('clicked me called from parent comp')
+  // }
 
   clear() {
     this.searchText = '';

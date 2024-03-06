@@ -5,30 +5,16 @@
           <h3>Edit Admin</h3>
           <p>Admin ID: {{ editedAdmin1?.id }}</p>
           <p>Admin name: {{ editedAdmin1?.firstname }}</p>
-        </div>
+        </div> 
       </p-dialog> -->
     <div>
-                <div >
-                         <!-- <div class="search">
-                            <div class="p-input-icon-left">
-                                <i class="pi pi-search"></i>
-                                <input type="text" pInputText placeholder="Search"
-                                [(ngModel)]="searchText"
-                                (input)="applyFilter()"
-                                >           
-                            </div> -->
-                            <!-- <button (click)="clear()" class="clr"><i class="fa-solid fa-arrows-rotate"></i></button>  -->
-                     
-                        
-                        <!-- <div class="export">
-                            <button class="button" type="submit" 
-                            label="submit"  (click)="exportExcel()">
-                                Export
-                             </button>
-                        </div> -->
-                    <div>
-                        <app-loader *ngIf="showLoader"></app-loader>
-                        <p-table *ngIf="!showLoader" 
+        <div >
+            <div>
+                <app-loader *ngIf="showLoader"></app-loader>
+                <div *ngIf="showNoResults === true && !showLoader" class="w-full h-[80vh] flex items-center justify-center">
+                    <h1 class="font-bold text-5xl text-gray-200">No Match Found</h1>
+                </div>
+                        <p-table *ngIf="!showLoader && !showNoResults" 
                             [value]="admins"
                             [paginator]="true"
                             [rows]="10"
