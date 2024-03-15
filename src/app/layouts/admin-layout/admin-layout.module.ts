@@ -16,7 +16,7 @@ import { UserProfileComponent } from '../../pages/user-profile/user-profile.comp
 import { TablesComponent } from '../../pages/tables/tables.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { InputTextModule } from 'primeng/inputtext';
-import { ButtonModule } from 'primeng/button';
+import { Button, ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { TableModule } from 'primeng/table';
 import {ToolbarModule} from 'primeng/toolbar';
@@ -80,6 +80,7 @@ import { AppActionDriverSettingsComponent } from '../../pages/app-action-driver-
 import { VRInputComponent } from '../../layouts/shared/vr-input/vr-input.component';
 import { VrAlertComponent } from '../../layouts/shared/vr-alert/vr-alert.component';
 import { LoaderComponent } from '../../layouts/shared/loader/loader.component';
+import { ButtonComponent } from '../shared/button/button.component';
 import { VrDropdownComponent } from '../../layouts/shared/vr-dropdown/vr-dropdown.component';
 import { SearchPipe } from 'src/app/helpers/search.pipe';
 
@@ -178,7 +179,8 @@ import { AppActionsMenuComponent } from 'src/app/pages/app-actions-menu/app-acti
     SurgeEditComponent,
     SearchPipe,
     UsersComponent,
-    SearchComponent
+    SearchComponent,
+    ButtonComponent
     // TripMenuComponent,
     // VehiclesMenuComponent,
     // ReviewsMenuComponent,

@@ -31,6 +31,7 @@ export class AdminViewComponent implements OnInit {
   selectedUser: any;
 
   userDetails:any
+  editedRowId: number | null = null;
 
   //  lifecycle and constructor
   constructor(
@@ -156,7 +157,12 @@ export class AdminViewComponent implements OnInit {
 
     editAdmin(admin: IAdmin):any {
       this.editedAdmin1 = { ...admin }; // Create a copy to avoid modifying the original data; 
+      this.editedRowId = admin.id;
       this.displayDialog = true;
+    }
+
+    toggleDialog(){
+      this.displayDialog = !this.displayDialog
     }
 
   
