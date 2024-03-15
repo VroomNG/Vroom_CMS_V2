@@ -21,9 +21,7 @@ td i {
     color: #5E72E4;
     cursor: pointer;
 }
-.del i {
-    color: rgb(214, 37, 37);
-}
+
 th {
     padding: 0px 20px;
     background-color: #FAFAF9;
@@ -31,35 +29,10 @@ th {
     font-size: 12px;
     font-weight: 500;
 }
-.button {
-    padding: 8px 12px;
-    // width: 30%;
-    border-radius: 6px;
-    margin: 10px;
-    background-color: #26125e;
-    color: white;
-    font-weight: 600;
-    border-color: transparent;
-    // box-shadow: 2px 2px #442c88ee;
-}
+
 .btn {
     border-radius: 30px;
     padding: 0;
-}
-
-.clr {
-    padding: 8px 12px;
-    // width: 30%;
-    border-radius: 6px;
-    margin: 10px;
-    background-color: #26125e;
-    color: white;
-    font-weight: 600;
-    border-color: transparent;
-}
-
-.clr:hover {
-    background-color: #1fbffd ;
 }
 
 .action {

@@ -2,126 +2,116 @@
     {{ alertMsg }}
 </app-vr-alert>
 <div class="main-container">
-    <div class="header">
-        <div class="add-admin-form">
-           <div class="card">
-            <div class="card-title">
-                <h5>Edit Admin</h5>
-            </div>
-        <app-loader *ngIf="!admins"></app-loader>
-        <div class="card-body"*ngIf="admins" >       
-            <form> 
-                <div class="container">
-                    <div class="card-input">
-                        <div class="form-group">
-                            <div>
-                                <label htmlFor="fistname" >First Name*</label>
-                            </div>
-                            <div>
-                                <input type="text" id="input-first-name" [(ngModel)]="admins.firstname" name="firstname" 
-                                class="form-control form-control-alternative" placeholder="First name" value="{{admins.firstname}}">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-input">
-                        <div class="form-group">
-                            <div>
-                                <label htmlFor="lastname">Last Name*</label>
-                            </div>
-                            <div>
-                                <input type="text" id="input-last-name" [(ngModel)]="admins.lastname" name="lastname" class="form-control form-control-alternative" placeholder="Last Name" value="{{admins.lastname}}">
-                            </div>
-                        </div>
-                    </div>
+    <p-dialog [(visible)]="displayDialog" [modal]="true" [responsive]="true" [closable]="true"  class="absolute rounded-full">
+        <div class="w-[80vh] h-[60vh] flex items-start justify-center ">
+            <div class="h-[95%] w-[95%]">
+                <div class="h-[10%] flex items-center w-full"> 
+                <h3 class="h3 text-[#28094F]">Edit Admin</h3>
                 </div>
-                <div class="container">
-                    <div class="card-input">
-                        <div class="form-group">
-                            <div>
-                                <label htmlFor="email">Email Address*</label>
-                            </div>
-                            <div>
-                                <input type="text" id="input-email" name="email" class="form-control form-control-alternative" placeholder="Email" value="{{admins.email}} " readonly="true">
-                            </div>
-                        
-                        </div>
-                    </div>
-                    <div class="card-input">
-                        <div class="form-group">
-                            <div>
-                                <label htmlFor="phone">Phone Number*</label>
-                            </div>
-                            <div>
-                                <input type="text" id="input-phone_no" [(ngModel)]="admins.Phone_no" name="phone_no" class="form-control form-control-alternative" placeholder="Phone Number" value="{{admins.Phone_no}}">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="card-input">
-                        <div class="form-group">
-                            <div>
-                                <label htmlFor="password">Password*</label>
-                            </div>
-                            <div>
-                                <input type="text" id="input-password" name="password" class="form-control form-control-alternative" placeholder="****************" readonly>
-                            </div>  
-                        </div>
-                    </div>
-                    <div class="card-input">
-                        <div class="form-group">
-                            <div>
-                                <label htmlFor="city">City*</label>
-                            </div>
-                            <div>
-                                <input type="text" id="input-city"  [(ngModel)]="admins.city" name="city" class="form-control form-control-alternative" placeholder="City" value="{{admins.city}}">
-                            </div>
-                            <!-- <p-dropdown formControlName="city" [options]="cities" optionLabel="name" class="dropdown"></p-dropdown> -->
-                        </div>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="card-input">
-                        <div class="form-group">
-                            <div>
-                                <label htmlFor="city">Admin Type*</label>
-                            </div>
-                            <div>
-                                <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="Admin Type" [value]="admins.user_type === '4' ? 'Super Admin' : (admins.user_type === '3' ? 'Sub Admin' : admins.user_type)" readonly="true">
-                            </div>
-                            <!-- <p-dropdown formControlName="user_type" [options]="userType" optionLabel="type" class="dropdown"></p-dropdown> -->
-                        </div>
-                    </div>
-                    <!-- <div class="card-input">
-                        <div class="form-group">
-                            <div>
-                                <label htmlFor="city">Admin Role</label>
-                            </div>
-                           <div class="admin_role">
-                                <ul>
-                                    <li><b>Super Admin</b>: Can view, Can add, Can edit, Can delete.</li>
-                                    <li><b>Sub Admin</b>: Can view, Can edit </li>
-                                    <li><b>Partner</b>: Can view  </li>
-                                </ul>
-                           </div>
+                <div class="h-[80%] w-full flex  items-start">
+                        <app-loader *ngIf="!admins"></app-loader>
+                        <div class="card-body"*ngIf="admins" >       
+                            <form> 
+                                <div class="">
+                                    <div class="card-input">
+                                        <div class="form-group">
+                                            <div>
+                                                <label htmlFor="fistname" >First Name*</label>
+                                            </div>
+                                            <div>
+                                                <input type="text" id="input-first-name" [(ngModel)]="admins.firstname" name="firstname" 
+                                                class="form-control form-control-alternative" placeholder="First name" value="{{admins.firstname}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-input">
+                                        <div class="form-group">
+                                            <div>
+                                                <label htmlFor="lastname">Last Name*</label>
+                                            </div>
+                                            <div>
+                                                <input type="text" id="input-last-name" [(ngModel)]="admins.lastname" name="lastname" class="form-control form-control-alternative" placeholder="Last Name" value="{{admins.lastname}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container">
+                                    <div class="card-input">
+                                        <div class="form-group">
+                                            <div>
+                                                <label htmlFor="email">Email Address*</label>
+                                            </div>
+                                            <div>
+                                                <input type="text" id="input-email" name="email" class="form-control form-control-alternative" placeholder="Email" value="{{admins.email}} " readonly="true">
+                                            </div>
+                                        
+                                        </div>
+                                    </div>
+                                    <div class="card-input">
+                                        <div class="form-group">
+                                            <div>
+                                                <label htmlFor="phone">Phone Number*</label>
+                                            </div>
+                                            <div>
+                                                <input type="text" id="input-phone_no" [(ngModel)]="admins.Phone_no" name="phone_no" class="form-control form-control-alternative" placeholder="Phone Number" value="{{admins.Phone_no}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container">
+                                    <div class="card-input">
+                                        <div class="form-group">
+                                            <div>
+                                                <label htmlFor="password">Password*</label>
+                                            </div>
+                                            <div>
+                                                <input type="text" id="input-password" name="password" class="form-control form-control-alternative" placeholder="****************" readonly>
+                                            </div>  
+                                        </div>
+                                    </div>
+                                    <div class="card-input">
+                                        <div class="form-group">
+                                            <div>
+                                                <label htmlFor="city">City*</label>
+                                            </div>
+                                            <div>
+                                                <input type="text" id="input-city"  [(ngModel)]="admins.city" name="city" class="form-control form-control-alternative" placeholder="City" value="{{admins.city}}">
+                                            </div>
+                
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container">
+                                    <div class="card-input">
+                                        <div class="form-group">
+                                            <div>
+                                                <label htmlFor="city">Admin Type*</label>
+                                            </div>
+                                            <div>
+                                                <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="Admin Type" [value]="admins.user_type === '4' ? 'Super Admin' : (admins.user_type === '3' ? 'Sub Admin' : admins.user_type)" readonly="true">
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                
                             
-                        </div>
-                    </div> -->
+                            </form>
+                            </div>
                 </div>
-
-                <!-- <div class="btn"> -->
-                    <button type="submit" label="submit"  class="button btn-primary " (click)="updateAdmin()">
-                     Update 
-                    </button>
-                    <button type="submit" label="submit" class="button  btn-danger" (click)="deleteAdmin()">
-                       delete
-                    </button>
-                <!-- </div> -->
-              </form>
+                    
+                <div class="h-[10%] w-full flex justify-between">
+                    <div class="btn w-[48%]">
+                        <app-button buttonText="Delete" borderColor="#f01717" bgColor="#f01717" textColor="#FFFFFF" ></app-button>
+                    </div>
+                    <div class="btn w-[48%]">      
+                        <app-button buttonText="Update Admin" borderColor="#28094F" bgColor="#28094F" textColor="#FFFFFF"></app-button>            
+                    </div>
+                </div>
             </div>
-           </div>
         </div>
-    </div>
-    <div class="footer"></div>
+    </p-dialog>
+
 
 </div>

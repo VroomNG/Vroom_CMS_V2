@@ -29,6 +29,7 @@ export class AdminEditComponent implements OnInit {
   admins!: IAdmin [] | any;
   adminId!: any;
   userDetails:any
+  displayDialog:boolean = true;
 
   showAlert:boolean = false;
   alertMsg = 'please wait your account is being created';
