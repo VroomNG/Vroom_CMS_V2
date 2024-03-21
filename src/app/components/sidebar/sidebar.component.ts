@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { RouteInfo } from 'src/app/model/routesInfo';
 import { ROUTES, Router } from '@angular/router';
   
@@ -8,12 +8,17 @@ import { ROUTES, Router } from '@angular/router';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
+   @Output() displayDialog:boolean  = false;
   
   constructor(private router: Router) {}
 
   isActive(routePath: string): boolean {
       return this.router.isActive(routePath, true);
   }
+  onLogOut(){
+    window.alert('hello')
+    this.displayDialog = true
+   }
 
   ngOnInit() {}
 
@@ -29,5 +34,7 @@ export class SidebarComponent implements OnInit {
   
   ];
 } 
+
+
 
 export { ROUTES };

@@ -3,6 +3,8 @@ import { HttpClientModule } from '@angular/common/http';import { RouterModule } 
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchComponent } from '../shared/search/search.component';
+import { TooltipModule } from 'primeng/tooltip';
+
 
 
 import { ClipboardModule } from 'ngx-clipboard';
@@ -118,6 +120,7 @@ import { AppActionsMenuComponent } from 'src/app/pages/app-actions-menu/app-acti
     InputNumberModule,
     CheckboxModule,
     DialogModule,
+    TooltipModule,
     GoogleMapsModule
   ],
   declarations: [

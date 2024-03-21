@@ -26,6 +26,7 @@ export class AdminLayoutComponent implements OnInit {
   carret_down =  false;
   carret_up = true;
   openDropdown: number | any;
+  displayDialog:boolean = false;
 
   constructor(
     private router: Router,
@@ -44,15 +45,6 @@ export class AdminLayoutComponent implements OnInit {
     } else {
       console.log('User details not found in localStorage.');
     }
-
-  //   var html = document.getElementsByTagName("html")[0];
-  //   html.classList.add("auth-layout");
-  //   var body = document.getElementsByTagName("body")[0];
-  //   body.classList.add("bg-default");
-  //   this.router.events.subscribe((event) => {
-  //     // this.isCollapsed = true;
-  //  });
-  
   }
 
   ngOnDestroy() {
@@ -62,8 +54,15 @@ export class AdminLayoutComponent implements OnInit {
     body.classList.remove("bg-default");
   }
 
+  
+  onLogOut(){
+   this.displayDialog = !this.displayDialog
+  }
+  close(){
+   this.displayDialog = !this.displayDialog
+  }
+
   logout(){
-     window.alert('are you sure')
       localStorage.clear()
       this.router.navigate(['/login']) 
   }
@@ -80,6 +79,8 @@ export class AdminLayoutComponent implements OnInit {
   checkScreenSize(): void {
     this.isSmallScreen = window.innerWidth < 1000; // Adjust the breakpoint as needed
   }
+  
+ 
   
 
 }

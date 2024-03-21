@@ -1,5 +1,5 @@
 <div class="w-full h-full">
-       <p-dialog [(visible)]="displayDialog" [modal]="true" [responsive]="true" [closable]="false"  class="absolute rounded-full">
+       <p-dialog [(visible)]="displayDialog" [modal]="true" [responsive]="true" [closable]="false"  class="absolute">
             <div class="w-[80vh] h-[60vh] flex items-start justify-center ">
                 <div class="h-[95%] w-[95%]">
                     <div class="h-[10%] flex items-center w-full"> 
@@ -130,7 +130,7 @@
                                     <td>
                                         6:30pm 17/01/2024
                                     </td>
-                                    <td class="action">
+                                    <td class="action flex justify-between">
                                         <span class="edit">
                                             <div class="flex align-items-center justify-content-center gap-2">
                                                <span (click)="userAction(admins.id)">
@@ -140,7 +140,7 @@
                                         </span>
                                     </td>
                                         
-                                    <div class="moreActions card  w-36 h-36 bg-white drop-shadow-xl absolute" *ngIf="selectedUserId === admins.id">
+                                    <div class="z-[9999] card  w-36 h-36 bg-white drop-shadow-xl absolute" *ngIf="selectedUserId === admins.id">
                                         <div class="h-[33%] bg-[#FAFAF9] rounded-t-md flex items-center justify-center red-400">
                                             <p class="font-medium">More Actions</p>
                                         </div>
@@ -154,8 +154,6 @@
                                                <span class="hover:font-medium">Edit User</span> 
                                             </a>
                                         </div>
-                                     
-                                        
                                     </div>
                                 </tr>
                             </ng-template>

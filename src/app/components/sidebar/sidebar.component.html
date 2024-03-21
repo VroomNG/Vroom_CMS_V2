@@ -1,3 +1,4 @@
+
 <div class="w-full h-full bg-[#FAFAF9] border-r-2 border-[#EEECF6]">
    <div class="logo h-[10%] w-full p-2 px-4 flex items-center">
        <a [hidden]="false" [routerLink]="['/']">
@@ -15,6 +16,10 @@
                </a>  
             </div>
          </div>
+   </div>
+   <div class="p-4 cursor-pointer" (click)="onLogOut()">Log out <span class="w-[30%]">
+      <i class="fa-solid fa-arrow-right-from-bracket mx-2"></i>
+    </span>
    </div>
    
 </div>

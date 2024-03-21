@@ -21,7 +21,7 @@ export class ChangePasswordComponent implements OnInit {
       old_pass: '',
       new_pass: ''
     }
-  
+
     constructor( 
       // private auth:AuthService, 
       public router: Router,
@@ -29,32 +29,17 @@ export class ChangePasswordComponent implements OnInit {
       ) { }
   
       ngOnInit() {
-        window.alert('on init')
-    
         const storedUserDetails = localStorage.getItem('userDetails');
-        
-    
         if (storedUserDetails) {
           // Parse the storedUserDetails JSON string to an object
           this.userDetails = JSON.parse(storedUserDetails);
-          console.log('change pass:', this.userDetails);
+          // console.log('change pass:', this.userDetails);
         } else {
-          console.log('User details not found in localStorage.');
+          // console.log('User details not found in localStorage.');
         }
-    
-        window.alert(this.userDetails.id)
-    
+        // window.alert(this.userDetails.id)
         this.userId = this.userDetails.id
-        // this.UserProfile.getSingleUser(this.userDetails.id).subscribe(
-        //   (res:any)=>{
-        //     console.log(res + 'single user')
-        //     this.displayDtls = res.data
-        //   }
-        // )
-  
-        
       }
-
     async changePassword(){
       this.showAlert = true;
       console.log(this.credentials)
@@ -95,6 +80,4 @@ export class ChangePasswordComponent implements OnInit {
     }
       }, 1600)
     }
-    
-
 }
