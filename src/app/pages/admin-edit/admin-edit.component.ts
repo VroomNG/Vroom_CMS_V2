@@ -29,7 +29,7 @@ export class AdminEditComponent implements OnInit {
   admins!: IAdmin [] | any;
   adminId!: any;
   userDetails:any
-  displayDialog:boolean = true;
+  displayDialog:boolean = false;
 
   showAlert:boolean = false;
   alertMsg = 'please wait your account is being created';
@@ -44,6 +44,7 @@ export class AdminEditComponent implements OnInit {
 
   }
   ngOnInit() { 
+    this.displayDialog = true
     this.cities = [
       { name: 'Abia' },
       { name: 'Enugu' },
@@ -114,12 +115,22 @@ export class AdminEditComponent implements OnInit {
       user_type: this.admins.user_type,
     }
 
+
+
     console.log(editAdminForm)
     this.admin.updateAdmin(editAdminForm, this.adminId).subscribe({
       next: (res:any) => {
      if(res.code === 200){
       this.alertMsg = 'User Updated',
       this.alertColor = 'success'
+     
+      setTimeout(() => {
+        const currentUrl = this.router.url;
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate([currentUrl]);
+        });
+      }, 1000);
+
      } else {
       this.alertMsg = 'Update failed!!, ERROR from Server ',
       this.alertColor = 'danger'
@@ -148,5 +159,11 @@ export class AdminEditComponent implements OnInit {
         })
     
     }
+
+     closeEdit(){
+      // window.alert('close')
+      this.displayDialog = !this.displayDialog;
+      this.router.navigate(["/users"])
+     }
 
 }

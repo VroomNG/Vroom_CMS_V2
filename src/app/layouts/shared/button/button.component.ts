@@ -11,6 +11,7 @@ export class ButtonComponent implements OnInit {
   @Input() bgColor: string = '';
   @Input() borderColor: string = '';
   @Input() textColor: string = '';
+  @Input() buttonState: any;
 
 
   constructor() { }

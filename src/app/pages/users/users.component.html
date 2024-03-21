@@ -9,20 +9,16 @@
             
             <div class="md:flex md:flex-row flex flex-col items-end justify-center w-[30%] mt-2 md:mt-0 h-full md:items-center md:justify-end order-2 md:order-1  ">
                 <!-- desktop -->
-                <span class=" hidden md:block cursor-pointer ">
-                   <a [routerLink]="['/add-admin']" >
+                <button class=" hidden md:block cursor-pointer " (click)="addAdmin()">
                     <i class="fa-solid fa-circle-plus text-[25px] hover:text-[#1FBFFD]"></i>
-                  </a> 
-                </span>
+                </button>
                 <!-- mobile -->
                 <span class="mx-2  block md:hidden cursor-pointer ">
                     <i class="fa-solid fa-circle-plus text-[25px] hover:text-[#1FBFFD]"></i>
                 </span>
-                <h6 class="text-md md:text-md lg:text-lg mx-2 md:mx-0">
-                   <span *ngIf="activeIndex === 0">
-                    <a [routerLink]="['/add-admin']">
+                <h6 class="text-md md:text-md lg:text-lg mx-2 md:mx-0 cursor-pointer">
+                   <span *ngIf="activeIndex === 0" (click)="addAdmin()">
                     Add Admin
-                    </a>
                    </span> 
                    <span *ngIf="activeIndex === 1">
                     Add Drivers
@@ -74,7 +70,7 @@
 
             <!-- pages -->
             <div class="h-[90%]">
-                <app-admin-view [searchText]="searchText" *ngIf="activeIndex === 0"></app-admin-view>
+                <app-admin-view [searchText]="searchText" [addNewAdmin]="addNewAdmin" *ngIf="activeIndex === 0"></app-admin-view>
                 <app-drivers-approved *ngIf="activeIndex === 1"></app-drivers-approved>
                 <app-riders *ngIf="activeIndex === 2"></app-riders>
                 <app-partners *ngIf="activeIndex === 3"></app-partners>

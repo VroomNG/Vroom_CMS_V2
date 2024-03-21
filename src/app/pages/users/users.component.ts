@@ -18,6 +18,7 @@ export class UsersComponent implements OnInit {
  ]
 
  searchText: string = ''
+ addNewAdmin: boolean = false;
 
  constructor(){}
   ngOnInit() {
@@ -32,12 +33,9 @@ export class UsersComponent implements OnInit {
     // this.activeUserData = this.users[index].data;
   }
 
-
-  // clickMe(){
-  //   // connect me to a child component
-  //   this.childRef.clickMe();
-  //   this.searchText = "changed by child";
-  // }
+  addAdmin(){
+    this.addNewAdmin = !this.addNewAdmin
+  }
 
   applySearch(){
     this.childRef.applyFilter()

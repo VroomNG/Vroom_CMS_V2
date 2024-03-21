@@ -1,5 +1,5 @@
 <div class="w-full h-full">
-       <p-dialog [(visible)]="displayDialog" [modal]="true" [responsive]="true" [closable]="true"  class="absolute rounded-full">
+       <p-dialog [(visible)]="displayDialog" [modal]="true" [responsive]="true" [closable]="false"  class="absolute rounded-full">
             <div class="w-[80vh] h-[60vh] flex items-start justify-center ">
                 <div class="h-[95%] w-[95%]">
                     <div class="h-[10%] flex items-center w-full"> 
@@ -40,6 +40,18 @@
                                 <h5>Last Seen</h5>
                                 <p>6:30pm 17/01/2024</p>
                             </div>
+                            <div class="w-[50%]">
+                                <h5>City</h5>
+                                <span *ngIf="editedAdmin1?.city === '' ">
+                                    <p>City Not Selected</p>
+                                </span>
+                                <span *ngIf="editedAdmin1?.city === null ">
+                                    <p>City Not Selected</p>
+                                </span>
+                                <p>
+                                    {{ editedAdmin1?.city }}
+                                </p>
+                            </div>
                         </div>
                     </div>
                     <div class="h-[10%] w-full flex justify-between">
@@ -55,6 +67,11 @@
                   </div>  
             </div>                                 
         </p-dialog>
+
+        <div *ngIf="addNewAdmin">
+            <app-admin-add></app-admin-add>
+        </div>
+       
     
     <div>
         <div >
@@ -70,7 +87,7 @@
                             [showCurrentPageReport]="false"
                             [tableStyle]="{ 'min-width': '100%' }"
                             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                            [rowsPerPageOptions]="[10, 25, 50]"
+                            [rowsPerPageOptions]=""
                         >
                             <ng-template pTemplate="header">
                                 <tr style="height: 3rem; border-color: #FAFAF9; border-top-width: 0.2px; border-bottom-width:0.2px ;">
@@ -100,15 +117,15 @@
                                         </div>
                                     </td>
                                     <td>
-                                    <div *ngIf="admins.user_type == '4'">
-                                        Super Admin
-                                    </div>
-                                    <div *ngIf="admins.user_type == '3'">
-                                        Sub Admin
-                                    </div>
-                                    <div *ngIf="admins.user_type == '5'">
-                                        Partner
-                                    </div>
+                                        <div *ngIf="admins.user_type == '4'">
+                                            Super Admin
+                                        </div>
+                                        <div *ngIf="admins.user_type == '3'">
+                                            Sub Admin
+                                        </div>
+                                        <div *ngIf="admins.user_type == '5'">
+                                            Partner
+                                        </div>
                                     </td>
                                     <td>
                                         6:30pm 17/01/2024

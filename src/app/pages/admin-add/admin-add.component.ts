@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { RegisterValidators } from '../../helpers/validators/register-validators'
 // import { EmailTaken } from '../../helpers/validators/email-taken';
 import { AdminService } from 'src/app/service/admin.service';
 import { UsersService } from 'src/app/service/users.service';
+import { Router } from '@angular/router';
 
 interface City {
   name: string;
@@ -27,6 +27,8 @@ export class AdminAddComponent implements OnInit {
   cities!: City[] |  undefined;
   userType!: Users[] |  undefined;
   userDetails:any
+
+  displayDialog:boolean = false;
   
   showAlert = false;
   alertMsg = 'please wait your account is being created';
@@ -34,7 +36,8 @@ export class AdminAddComponent implements OnInit {
 
   constructor(
     private users: UsersService,
-     private Admin: AdminService
+     private Admin: AdminService,
+     private router: Router
     ){ }
 
   onSubmit(){
@@ -43,6 +46,7 @@ export class AdminAddComponent implements OnInit {
     }
   }
   ngOnInit(){
+    this.displayDialog = true;
     this.userType = [
       { type: 'Super Admin', code: '4' },
       { type: 'Sub Admin', code: '3' },
@@ -91,6 +95,8 @@ export class AdminAddComponent implements OnInit {
 
   // const selectedValue = this.form.get('selectedOption').value;
   addAccessTrail(){
+
+   
     const {email} = this.userDetails
     console.log(email)
 
@@ -139,6 +145,11 @@ export class AdminAddComponent implements OnInit {
   reset(){
     this.adminForm.reset()
   }
+  close(){
+    // window.alert('close')
+    this.displayDialog = !this.displayDialog;
+    this.router.navigate(["/users"])
+   }
 
   
 }

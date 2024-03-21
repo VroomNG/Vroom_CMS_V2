@@ -1,5 +1,5 @@
-<input pInputText [formControl]="control" value="" [type]="type" placeholder="{{placeholder}}"  mask="format" dropSpecialCharacters="false"   
-        class="form-input"
+<input pInput [formControl]="control" value="" [type]="type" placeholder="{{placeholder}}"  mask="format" dropSpecialCharacters="false"   
+class="form-control form-control-alternative  mb-2 " [ngClass]="{'isError': control.invalid && (control.touched || control.dirty)}"
         />
 <!--mask="format" dropSpecialCharacters="false"   -->
         <ng-container *ngIf="control.touched && control.dirty" class="container">

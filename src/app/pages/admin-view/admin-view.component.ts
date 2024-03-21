@@ -17,6 +17,7 @@ import * as FileSaver from 'file-saver';
 export class AdminViewComponent implements OnInit {
   
  @Input() searchText: string = '';
+ @Input() addNewAdmin:boolean = false;
 
  showNoResults:boolean = false;
  moreActions:boolean = false;
@@ -29,6 +30,7 @@ export class AdminViewComponent implements OnInit {
   originalData = this.admins;
   selectedUserId:any = null;
   selectedUser: any;
+  
 
   userDetails:any
   editedRowId: number | null = null;
@@ -120,11 +122,7 @@ export class AdminViewComponent implements OnInit {
           this.showNoResults = false; // Hide the "No Search Result" message if there are results
         }
   }
- 
-  showDialog(user: any) {
-    this.selectedUser = user;
-    this.displayDialog = true;
-  }
+
  
   clear() {
     this.searchText = '';
@@ -159,6 +157,8 @@ export class AdminViewComponent implements OnInit {
       this.editedAdmin1 = { ...admin }; // Create a copy to avoid modifying the original data; 
       this.editedRowId = admin.id;
       this.displayDialog = true;
+      this.selectedUserId = null; 
+      
     }
 
     toggleDialog(){
