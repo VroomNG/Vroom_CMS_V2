@@ -68,11 +68,6 @@
             </div>                                 
         </p-dialog>
 
-        <div *ngIf="addNewAdmin">
-            <app-admin-add></app-admin-add>
-        </div>
-       
-    
     <div>
         <div >
             <div>
@@ -103,7 +98,10 @@
                                 <tr style="height: 3rem; border-color: #abb4ce80; border-top-width: 0.2px; border-bottom-width:0.2px ">
                                 
                                     <td>
-                                       <span class="capitalize">{{admins.firstname}}</span> <span class="capitalize"> {{admins.lastname}}</span>
+                                        <span class="flex items-center"> 
+                                            <img src="assets/img/theme/user.png" class="w-8" alt="sidebar">
+                                           <span class="capitalize flex flex-wrap mx-2">{{admins.firstname}} {{admins.lastname}}</span> 
+                                        </span>
                                     </td>
                                     <td>
                                         {{admins.email}}

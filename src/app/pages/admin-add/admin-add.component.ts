@@ -148,6 +148,12 @@ export class AdminAddComponent implements OnInit {
   close(){
     // window.alert('close')
     this.displayDialog = !this.displayDialog;
+    setTimeout(() => {
+      const currentUrl = this.router.url;
+      this.router.navigateByUrl('/users', { skipLocationChange: true }).then(() => {
+        this.router.navigate([currentUrl]);
+      });
+    }, 500);
     this.router.navigate(["/users"])
    }
 

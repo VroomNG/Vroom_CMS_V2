@@ -10,13 +10,22 @@ import { UsersService } from 'src/app/service/users.service';
   styleUrls: ['./drivers-approved.component.scss']
 })
 export class DriversApprovedComponent {
+
   app_drivers: IApproved_Drivers [] = [];
   checked = false;
-  userDetails:any
+  userDetails:any;
+  displayDialog:boolean = false;
 
   loaderColor!: 'primary';
   showLoader = true;
   searchText: string = '';
+  editedUser: IApproved_Drivers | any;
+  showNoResults:boolean = false;
+  selectedUserId:any = null;
+  originalData = this.app_drivers;
+ 
+
+  editedRowId: number | null = null;
 
 
   constructor(
@@ -38,8 +47,8 @@ export class DriversApprovedComponent {
   const userDetails = this.users.getStoredUserDetails();
   this.userDetails = userDetails
   this.addAccessTrail()
-
   }
+
   addAccessTrail(){
     const {email} = this.userDetails
     console.log(email)
@@ -57,6 +66,14 @@ export class DriversApprovedComponent {
       }
     )
   }
+
+  userAction(userId: any) {
+    if (this.selectedUserId === userId) {
+        this.selectedUserId = null; // Hide the card actions if the same user is clicked again
+    } else {
+        this.selectedUserId = userId; // Show the card actions for the clicked user
+    }
+}
 
   applyFilter() {
     const filteredAdmins = this.app_drivers.filter((item) => {
@@ -110,5 +127,15 @@ saveAsExcelFile(buffer: any, fileName: string): void {
       console.log('sorted array',newdata)
     }
     }
-  
+
+    editUser(user: any):any {
+      this.editedUser = { ...user }; // Create a copy to avoid modifying the original data; 
+      this.editedRowId = user.id;
+      this.displayDialog = true;
+      this.selectedUserId = null; 
+    }
+    toggleDialog(){
+      this.displayDialog = !this.displayDialog
+    }
+
 }

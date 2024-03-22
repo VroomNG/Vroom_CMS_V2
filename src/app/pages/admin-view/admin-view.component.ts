@@ -17,7 +17,6 @@ import * as FileSaver from 'file-saver';
 export class AdminViewComponent implements OnInit {
   
  @Input() searchText: string = '';
- @Input() addNewAdmin:boolean = false;
 
  showNoResults:boolean = false;
  moreActions:boolean = false;
@@ -29,7 +28,7 @@ export class AdminViewComponent implements OnInit {
   showLoader = true;
   originalData = this.admins;
   selectedUserId:any = null;
-  selectedUser: any;
+  // selectedUser: any;
   
 
   userDetails:any
@@ -108,8 +107,6 @@ export class AdminViewComponent implements OnInit {
         admin.user_type.toString().includes(this.searchText)
       );
     });
-    // Update the table data with the filtered results
-    // If you are using server-side filtering, you may need to call an API here
     this.admins = filteredAdmins;
     // Check if there are any results
         if (filteredAdmins.length  === 0) {
@@ -158,7 +155,6 @@ export class AdminViewComponent implements OnInit {
       this.editedRowId = admin.id;
       this.displayDialog = true;
       this.selectedUserId = null; 
-      
     }
 
     toggleDialog(){

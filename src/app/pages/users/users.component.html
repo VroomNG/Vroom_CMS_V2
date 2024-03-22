@@ -4,20 +4,22 @@
            <div class="w-[95%] py-3 md:py-0  md:w-[50%] ">
             <h5 class="font-bold ">Users</h5>
            </div>
-
            <div class="w-[100%] md:w-[50%] h-full py-4 md:py-0 flex bg-white md:bg-white  items-center md:justify-end">
-            
             <div class="md:flex md:flex-row flex flex-col items-end justify-center w-[30%] mt-2 md:mt-0 h-full md:items-center md:justify-end order-2 md:order-1  ">
                 <!-- desktop -->
-                <button class=" hidden md:block cursor-pointer " (click)="addAdmin()">
-                    <i class="fa-solid fa-circle-plus text-[25px] hover:text-[#1FBFFD]"></i>
+                <button class=" hidden md:block cursor-pointer ">
+                    <a [routerLink]="getRouterLink(activeIndex)">
+                        <i class="fa-solid fa-circle-plus text-[25px] hover:text-[#1FBFFD]"></i>
+                      </a>
                 </button>
                 <!-- mobile -->
                 <span class="mx-2  block md:hidden cursor-pointer ">
-                    <i class="fa-solid fa-circle-plus text-[25px] hover:text-[#1FBFFD]"></i>
+                    <a [routerLink]="getRouterLink(activeIndex)">
+                        <i class="fa-solid fa-circle-plus text-[25px] hover:text-[#1FBFFD]"></i>
+                      </a>
                 </span>
                 <h6 class="text-md md:text-md lg:text-lg mx-2 md:mx-0 cursor-pointer">
-                   <span *ngIf="activeIndex === 0" (click)="addAdmin()">
+                   <span *ngIf="activeIndex === 0">
                     Add Admin
                    </span> 
                    <span *ngIf="activeIndex === 1">
@@ -70,7 +72,7 @@
 
             <!-- pages -->
             <div class="h-[90%]">
-                <app-admin-view [searchText]="searchText" [addNewAdmin]="addNewAdmin" *ngIf="activeIndex === 0"></app-admin-view>
+                <app-admin-view [searchText]="searchText" *ngIf="activeIndex === 0"></app-admin-view>
                 <app-drivers-approved *ngIf="activeIndex === 1"></app-drivers-approved>
                 <app-riders *ngIf="activeIndex === 2"></app-riders>
                 <app-partners *ngIf="activeIndex === 3"></app-partners>

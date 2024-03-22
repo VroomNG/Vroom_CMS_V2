@@ -14,7 +14,18 @@ export class RidersComponent implements OnInit {
  riders: IRiders [] = [];
  showLoader = true;
  searchText:string = '';
- userDetails:any
+ userDetails:any;
+ displayDialog:boolean = false;
+
+  loaderColor!: 'primary';
+ 
+  editedUser: IRiders | any;
+  showNoResults:boolean = false;
+  selectedUserId:any = null;
+ 
+ 
+
+  editedRowId: number | null = null;
 
  constructor(private Riders: RiderService, private users:UsersService ){}
 
@@ -92,5 +103,23 @@ export class RidersComponent implements OnInit {
         console.log('sorted array',newdata)
       }
       }
+
+      editUser(user: any):any {
+        this.editedUser = { ...user }; // Create a copy to avoid modifying the original data; 
+        this.editedRowId = user.id;
+        this.displayDialog = true;
+        this.selectedUserId = null; 
+      }
+      toggleDialog(){
+        this.displayDialog = !this.displayDialog
+      }
+
+      userAction(userId: any) {
+        if (this.selectedUserId === userId) {
+            this.selectedUserId = null; // Hide the card actions if the same user is clicked again
+        } else {
+            this.selectedUserId = userId; // Show the card actions for the clicked user
+        }
+    }
 
 }

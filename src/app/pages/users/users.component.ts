@@ -33,8 +33,19 @@ export class UsersComponent implements OnInit {
     // this.activeUserData = this.users[index].data;
   }
 
-  addAdmin(){
-    this.addNewAdmin = !this.addNewAdmin
+  getRouterLink(index: number): string {
+    switch(index) {
+      case 0:
+        return '/add-admin';
+      case 1:
+        return '/add-drivers';
+      case 2:
+        return '/add-riders';
+      case 3:
+        return '/add-partners';
+      default:
+        return '/';
+    }
   }
 
   applySearch(){

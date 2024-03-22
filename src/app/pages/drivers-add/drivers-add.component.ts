@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup,Validators, } from '@angular/forms';
 import { DriversService } from 'src/app/service/driver.service';
 import { UsersService } from 'src/app/service/users.service';
+import { Router } from '@angular/router';
 
 interface City {
   name: string;
@@ -23,11 +24,20 @@ export class DriversAddComponent implements OnInit {
   alertMsg = 'Please wait';
   alertColor = 'primary';
 
+  displayDialog:boolean = false
+
 // constructor and lifecycle methods
-  constructor(private drivers: DriversService, private users:UsersService){
+  constructor(
+    private drivers: DriversService, 
+    private users:UsersService,
+    private router:Router)
+      {
      }
 
   ngOnInit(){
+
+    this.displayDialog = true;
+
     this.vehicles = [
       { name: 'SUV', code: 'NY' },
       { name: 'Sedan', code: 'RM' },
@@ -117,8 +127,9 @@ const userDetails = this.users.getStoredUserDetails();
       }
     )
   }
-  onSubmit(){
-    // console.log(this.addDrivers.value)
+  submit(){
+    console.log(this.addDrivers.value)
+    window.alert('in process')
     this.showAlert = true
     setTimeout(() => {
       this.showAlert = true
@@ -162,5 +173,15 @@ const userDetails = this.users.getStoredUserDetails();
 reset(){
   this.addDrivers.reset()
 }  
-
+  close(){
+    // window.alert('close')
+    this.displayDialog = !this.displayDialog;
+    setTimeout(() => {
+      const currentUrl = this.router.url;
+      this.router.navigateByUrl('/users', { skipLocationChange: true }).then(() => {
+        this.router.navigate([currentUrl]);
+      });
+    }, 500);
+    this.router.navigate(["/users"])
+   }
 }
