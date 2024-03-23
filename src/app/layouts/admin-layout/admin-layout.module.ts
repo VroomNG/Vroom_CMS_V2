@@ -5,8 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchComponent } from '../shared/search/search.component';
 import { TooltipModule } from 'primeng/tooltip';
 
-
-
 import { ClipboardModule } from 'ngx-clipboard';
 import { ChartModule } from 'primeng/chart';
 
@@ -183,8 +181,8 @@ import { AppActionsMenuComponent } from 'src/app/pages/app-actions-menu/app-acti
     SearchPipe,
     UsersComponent,
     SearchComponent,
-    ButtonComponent
-    // TripMenuComponent,
+    ButtonComponent,
+    TripMenuComponent,
     // VehiclesMenuComponent,
     // ReviewsMenuComponent,
     // ActivityLogComponent,

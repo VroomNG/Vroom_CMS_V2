@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import * as FileSaver from 'file-saver';
 import { IAllTrips } from 'src/app/model/trips';
 import { TripService } from 'src/app/service/trips.service';
@@ -10,6 +10,12 @@ import { UsersService } from 'src/app/service/users.service';
   styleUrls: ['./trips.component.scss']
 })
 export class TripsComponent implements OnInit {
+
+
+ @Input() searchText: string = '';
+
+ showNoResults:boolean = false;
+ moreActions:boolean = false;
   
   trips: IAllTrips[] = [];
   viewTrips: IAllTrips | any;
@@ -18,7 +24,10 @@ export class TripsComponent implements OnInit {
   showLoader = true;
   userDetails:any
 
-  searchText:string = '';
+  loaderColor!: 'primary';
+  editedUser: IAllTrips | any;
+  selectedUserId:any = null;
+  editedRowId: number | null = null;
   
   constructor(private Trips: TripService, private users:UsersService){}
   ngOnInit(): void {
@@ -96,6 +105,25 @@ clear(){
     }
   )
 }
+
+editUser(user: any):any {
+  this.editedUser = { ...user }; // Create a copy to avoid modifying the original data; 
+  this.editedRowId = user.id;
+  this.displayDialog = true;
+  this.selectedUserId = null; 
+}
+toggleDialog(){
+  this.displayDialog = !this.displayDialog
+}
+
+userAction(userId: any) {
+  if (this.selectedUserId === userId) {
+      this.selectedUserId = null; // Hide the card actions if the same user is clicked again
+  } else {
+      this.selectedUserId = userId; // Show the card actions for the clicked user
+  }
+}
+
  
 
 }

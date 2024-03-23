@@ -15,6 +15,12 @@ export class PartnersComponent implements OnInit {
   showLoader = true;
   searchText:string = ''
   userDetails:any
+  displayDialog:boolean = false;
+  loaderColor!: 'primary';
+  editedUser: IPartners | any;
+  showNoResults:boolean = false;
+  selectedUserId:any = null;
+  editedRowId: number | null = null;
 
   constructor(private Partners: PartnerService, private users: UsersService ) {}
 
@@ -95,5 +101,22 @@ saveAsExcelFile(buffer: any, fileName: string): void {
       }
     )
   }
+  editUser(user: any):any {
+    this.editedUser = { ...user }; // Create a copy to avoid modifying the original data; 
+    this.editedRowId = user.id;
+    this.displayDialog = true;
+    this.selectedUserId = null; 
+  }
+  toggleDialog(){
+    this.displayDialog = !this.displayDialog
+  }
+
+  userAction(userId: any) {
+    if (this.selectedUserId === userId) {
+        this.selectedUserId = null; // Hide the card actions if the same user is clicked again
+    } else {
+        this.selectedUserId = userId; // Show the card actions for the clicked user
+    }
+}
 
 }

@@ -23,8 +23,6 @@ export class RidersComponent implements OnInit {
   showNoResults:boolean = false;
   selectedUserId:any = null;
  
- 
-
   editedRowId: number | null = null;
 
  constructor(private Riders: RiderService, private users:UsersService ){}
