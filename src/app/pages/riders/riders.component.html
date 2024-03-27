@@ -125,9 +125,12 @@
                                         <img src="assets/img/theme/user.png" class="w-8" alt="sidebar">
                                         <!-- <img src="{{users.profile_url}}" class="w-8" alt="sidebar"> -->
                                        <span class="capitalize flex flex-wrap mx-2">{{users.firstname}} {{users.lastname}}</span> 
+                                       <span class="capitalize flex flex-wrap mx-2" *ngIf="users.firstname === '' && users.lastname === '' ">No Name</span> 
+                                       
                                     </span>
                                 </td>
                                 <td>
+                                    <span *ngIf="users.email === '' "> No email</span>
                                     {{users.email}}
                                 </td>
                                 <td>

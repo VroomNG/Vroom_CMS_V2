@@ -136,24 +136,23 @@
                                                </span>
                                             </div>
                                         </span>
-                                    </td>
-                                        
-                                    <div class="z-[9999] card  w-36 h-36 bg-white drop-shadow-xl absolute" *ngIf="selectedUserId === admins.id">
-                                        <div class="h-[33%] bg-[#FAFAF9] rounded-t-md flex items-center justify-center red-400">
-                                            <p class="font-medium">More Actions</p>
-                                        </div>
-                                        <div class="h-[32%] flex items-center border-y-[0.5px] border-[#EEECF6] justify-center ">
-                                            <span class="text-brand900 cursor-pointer hover:font-bold" (click)="editAdmin(admins)" >
-                                                <span class="hover:font-medium">View User</span> 
-                                            </span>
-                                        </div>
-                                        <div class="h-[32%] flex items-center justify-center">
-                                            <a routerLink="/users/{{admins.id}}/edit" class="hover:text-brand900">
-                                               <span class="hover:font-medium">Edit User</span> 
-                                            </a>
-                                        </div>
-                                    </div>
+                                    </td> 
                                 </tr>
+                                <div class="z-[9999] card  w-36 h-36 ml-[60rem] bg-white drop-shadow-xl absolute" *ngIf="selectedUserId === admins.id">
+                                    <div class="h-[33%] bg-[#FAFAF9] rounded-t-md flex items-center justify-center red-400">
+                                        <p class="font-medium">More Actions</p>
+                                    </div>
+                                    <div class="h-[32%] flex items-center border-y-[0.5px] border-[#EEECF6] justify-center ">
+                                        <span class="text-brand900 cursor-pointer hover:font-bold" (click)="editAdmin(admins)" >
+                                            <span class="hover:font-medium">View Admin</span> 
+                                        </span>
+                                    </div>
+                                    <div class="h-[32%] flex items-center justify-center">
+                                        <a routerLink="/users/{{admins.id}}/edit" class="hover:text-brand900">
+                                           <span class="hover:font-medium">Edit Admin</span> 
+                                        </a>
+                                    </div>
+                                </div>
                             </ng-template>
                             
                                 <ng-template pTemplate="paginatorleft">

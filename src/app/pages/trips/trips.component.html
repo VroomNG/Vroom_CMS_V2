@@ -1,56 +1,4 @@
-<!-- <p-dialog [(visible)]="displayDialog" [modal]="true" [responsive]="true">
-    <div class="trip-details">
-        <div class="cont"> 
-            <h5>Trip Invoice: Finished</h5>
-            <div class="details1">
-                <div class="box">
-                     <div class="box-card">
-                        <h6>Your Trip : {{viewTrips?.utc_trip_datetime}}</h6>
-                        <div>
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15902.195574075227!2d6.9746144999999995!3d4.847232549999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sng!4v1698649896811!5m2!1sen!2sng" width="100%" 
-                            height="250" style="border:0;" allowfullscreen=""
-                             loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
 
-                     </div>
-                </div>
-                <div class="box-1">
-                     <div class="box-card-1">
-                        <div class="box-cont">
-                            <table>
-                              <tr>
-                                <th>Fare Breakdown For Ride No : 2304</th>
-                              </tr>
-                              <tr>
-                                <td>Actual Cost</td>
-                                <td>{{viewTrips?.trip_amount}}</td>
-                              </tr>
-                              <tr>
-                                <td>Total Fare (Payment Mode: cash)</td>
-                                <td>{{viewTrips?.trip_amount}}  </td>
-                              </tr>
-                            </table>
-
-
-                        </div>
-                     </div>
-                     <br>
-                     <hr>
-                     <div class="box-card-2">
-
-                     </div>
-                </div>
-            </div>
-            <div class="details2">
-                <div class="box-2">
-                    <div class="box-card-3">
-                        hh
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-  </p-dialog> -->
   <div class="w-full h-full">
     <p-dialog [(visible)]="displayDialog" [modal]="true" [responsive]="true" [closable]="false"  class="absolute">
         <div class="w-[80vh] h-[60vh] flex items-start justify-center ">
@@ -83,7 +31,7 @@
                        
                        <div class="w-[50%]">
                            <h5>Actual Amount</h5>
-                           <p>{{editedUser?.trip_amount}}</p>     
+                           <p>  &#x20A6; {{editedUser?.trip_amount}}</p>     
                        </div>
                        <div class="w-[50%]">
                            <h5>Total Amount</h5>
@@ -100,9 +48,27 @@
                                <span>Completed</span>
                            </div>
                            <div *ngIf="editedUser?.trip_status == 6">
+                               <span>In Progress</span>
+                           </div>
+                           <div *ngIf="editedUser?.trip_status == 0">
                                <span>Cancelled</span>
                            </div>
-                           <div *ngIf="editedUser?.trip_status == '' || null || undefined || '0'  ">
+                           <div *ngIf="editedUser?.trip_status == '' || null || undefined   ">
+                               <span>Not detected</span>
+                           </div> 
+                       </div>
+                       <div class="w-[50%]">
+                           <h5>Trip Type</h5>
+                           <div *ngIf="editedUser?.trip_type ==  '1' ">
+                               <span>Individual</span>
+                           </div>
+                           <div *ngIf="editedUser?.trip_type == '2'  ">
+                               <span>Shared trip</span>
+                           </div>
+                           <!-- <div *ngIf="editedUser?.trip_status == 3">
+                               <span></span>
+                           </div> -->
+                           <div *ngIf="editedUser?.trip_type  == '' || null || undefined   ">
                                <span>Not detected</span>
                            </div> 
                        </div>
@@ -119,8 +85,8 @@
                        <app-button buttonText="Cancel" borderColor="#F1F2F4" bgColor="transparent" (click)="toggleDialog()"></app-button>
                    </div>
                    <div class="btn w-[48%]">
-                    <a routerLink="/users/{{editedUser?.id}}/edit" class="hover:text-brand900">
-                      <app-button buttonText="Edit Admin" borderColor="#28094F" bgColor="#28094F" textColor="#FFFFFF"></app-button>
+                    <a routerLink="/trips-settings" class="hover:text-brand900">
+                      <app-button buttonText="Edit Trip Parameters" borderColor="#28094F" bgColor="#28094F" textColor="#FFFFFF"></app-button>
                     </a>   
                 </div>
                 </div>
@@ -146,14 +112,16 @@
                          <ng-template pTemplate="header">
                              <tr style="height: 3rem; border-color: #FAFAF9; border-top-width: 0.2px; border-bottom-width:0.2px ;">
 
-                                <th class="w-[10%]">Trip No</th>
-                                <th class="w-[20%]">Rider</th>
-                                <th class="w-[10%]">Date</th>
-                                <th class="w-[5%]">Driver</th>
-                                <th class="w-[5%]">Trip Total Amount (&#x20A6;)</th>
-                                <th class="w-[5%]">Trip Status</th>
-                                <th class="w-[5%]">Payment Mode</th>
-                                <th class="w-[5%]">Action</th>
+                                <th class="w-[8%]">Trip No</th>
+                                <th class="w-[15%]">Driver</th>
+                                <th class="w-[15%]">Rider</th>
+                                <!-- <th class="w-[10%]">Trip type</th> -->
+                                <th class="w-[10%]">Date and Time</th>
+                                <th class="w-[10%]">Start Price </th>
+                                <th class="w-[10%]">End Price </th>
+                                <th class="w-[5%]">Status</th>
+                                <!-- <th class="w-[5%]">Payment Mode</th> -->
+                                <th class="w-[2%]">Action</th>
                              </tr>
                          </ng-template>
                          <ng-template pTemplate="body" let-trips>
@@ -161,34 +129,61 @@
                              *ngIf="trips.trip_status === '3' || searchText === '' || trips.driver_firstname.toLowerCase().includes(searchText) || trips.firstname.toLowerCase().includes(searchText) || trips.lastname.toLowerCase().includes(searchText)   ">
                         
                                     <td>VRM {{ trips.id }}</td>
-                                    <span class="flex items-center"> 
-                                        <img src="assets/img/theme/user.png" class="w-8" alt="sidebar">
-                                        <!-- <img src="{{users.profile_url}}" class="w-8" alt="sidebar"> -->
-                                       <span class="capitalize flex flex-wrap mx-2">{{trips.firstname}} {{trips.lastname}}</span> 
-                                    </span>
-                                    <td> {{ trips.utc_trip_datetime  | date:'short':'UTC' }}</td>
                                     <td>
-                                        {{ trips.driver_firstname }}
-                                        <div *ngIf="!trips.driver_firstname">
-                                         Not detected
+                                        <span class="flex items-center"> 
+                                            <img src="assets/img/theme/user.png" class="w-8" alt="user">
+                                            <!-- <img src="{{users.profile_url}}" class="w-8" alt="sidebar"> -->
+                                           
+                                            <div class="capitalize flex flex-wrap mx-1 text-[12px] ">
+                                                {{ trips.driver_firstname }} {{ trips.driver_lastname }} 
+                                            </div> 
+                                            <div class="capitalize flex flex-wrap mx-1 text-[12px] " *ngIf="trips.driver_firstname === null || '' && trips.driver_lastname === null || '' ">
+                                               No Name 
                                         </div>
+                                    </span>
                                     </td>
+                                    <td>
+                                        <span class="flex items-center"> 
+                                            <img src="assets/img/theme/user.png" class="w-8" alt="sidebar">
+                                            <div class="capitalize flex flex-wrap mx-2 text-[12px] ">
+                                                {{trips.firstname}}
+                                                {{trips.lastname}}
+                                            </div>
+                                        </span>
+                                    </td>
+                                    <td> {{ trips.utc_trip_datetime  | date:'short':'UTC' }}</td>
+                                    
 
-                                    <td>{{ trips.trip_amount_without_discount }}</td>
+                                    <td> &#x20A6; {{ trips.trip_amount }}</td>
+                                    <td> &#x20A6; {{ trips.trip_amount_without_discount }}</td>
+
                                     <td>
                                         
                                         <div *ngIf="trips.trip_status == 3">
-                                            <span>Completed</span>
+                                            <div class="border-2 border-slate-100 rounded-lg flex items-cemter justify-center ">
+                                                <span class="w-2 h-2 bg-green-500 my-2 mx-1 rounded-full"></span>
+                                                <span class=" my-1 mr-1">Complete</span>
+                                            </div>
                                         </div>
                                         <div *ngIf="trips.trip_status == 6">
-                                            <span>Cancelled</span>
+                                            <div class="border-2 border-slate-100 rounded-lg flex items-cemter justify-center ">
+                                                <span class="w-2 h-2 bg-[#EAAA08] my-2 mx-1 rounded-full"></span>
+                                                <span class=" my-1 mr-1">In Progress</span>
+                                            </div>
                                         </div>
-                                        <div *ngIf="trips.trip_status == '' || null || undefined || '0'  ">
+
+                                        <div *ngIf="trips.trip_status == '0' ">
+                                            <div class="border-2 border-slate-100 rounded-lg flex items-cemter justify-center ">
+                                                <span class="w-2 h-2 bg-red-500 my-2 mx-1 rounded-full"></span>
+                                                <span class=" my-1 mr-1">Cancelled</span>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="trips.trip_status == '' || null || undefined ">
                                             <span>Not detected</span>
                                         </div>
                                         
                                     </td>
-                                    <td>{{ trips.payment_type }}</td>
+                                  
                                 
                                 <td class="action flex justify-between">
                                     <span class="edit">
@@ -200,11 +195,11 @@
                                         </div>
                                     </span>
                                 </td>
-                                <div class="z-[9999] card  w-36 h-36 bg-white drop-shadow-xl absolute" *ngIf="selectedUserId === trips.id">
-                                    <div class="h-[33%] bg-[#FAFAF9] rounded-t-md flex items-center justify-center red-400">
+                                <div class="z-[9999] card  w-36 h-24 bg-white drop-shadow-xl  mr-6 absolute" *ngIf="selectedUserId === trips.id">
+                                    <div class="h-[45%] bg-[#FAFAF9] rounded-t-md flex items-center justify-center red-400">
                                         <p class="font-medium">More Actions</p>
                                     </div>
-                                    <div class="h-[32%] flex items-center border-y-[0.5px] border-[#EEECF6] justify-center ">
+                                    <div class="h-[55%] flex items-center border-y-[0.5px] border-[#EEECF6] justify-center ">
                                         <span class="text-brand900 cursor-pointer hover:font-bold" (click)="editUser(trips)" >
                                             <span class="hover:font-medium">View User</span> 
                                         </span>

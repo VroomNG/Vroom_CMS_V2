@@ -24,6 +24,9 @@
                         </div>
                         <div class="w-[50%]">
                             <h5>Vehicle Type</h5>
+                            <span *ngIf="editedUser?.vehicle_type === null || undefined || '' ">
+                                Not Specified
+                            </span>
                             {{ editedUser?.vehicle_type }}
                         </div>
                         <div class="w-[50%]">
@@ -125,9 +128,13 @@
                                     <span class="flex items-center"> 
                                         <img src="assets/img/theme/user.png" class="w-8" alt="sidebar">
                                        <span class="capitalize flex flex-wrap mx-2">{{users.firstname}} {{users.lastname}}</span> 
+                                       <span *ngIf="users.firstname === '' && users.lastname === '' ">No Name</span>
                                     </span>
                                 </td>
                                 <td>
+                                    <span *ngIf="users.email === ''   ">
+                                        No Email
+                                    </span>
                                     {{users.email}}
                                 </td>
                                 <td>
@@ -186,22 +193,23 @@
                                         </div>
                                     </span>
                                 </td>
-                                <div class="z-[9999] card  w-36 h-36 bg-white drop-shadow-xl absolute" *ngIf="selectedUserId === users.id">
-                                    <div class="h-[33%] bg-[#FAFAF9] rounded-t-md flex items-center justify-center red-400">
-                                        <p class="font-medium">More Actions</p>
-                                    </div>
-                                    <div class="h-[32%] flex items-center border-y-[0.5px] border-[#EEECF6] justify-center ">
-                                        <span class="text-brand900 cursor-pointer hover:font-bold" (click)="editUser(users)" >
-                                            <span class="hover:font-medium">View User</span> 
-                                        </span>
-                                    </div>
-                                    <div class="h-[32%] flex items-center justify-center">
-                                        <a routerLink="/users/{{users.id}}/edit" class="hover:text-brand900">
-                                           <span class="hover:font-medium">Edit User</span> 
-                                        </a>
-                                    </div>
-                                </div>
+                                
                             </tr> 
+                            <div class="z-[9999] card  w-36 h-36 ml-[60rem] bg-white drop-shadow-xl absolute" *ngIf="selectedUserId === users.id">
+                                <div class="h-[33%] bg-[#FAFAF9] rounded-t-md flex items-center justify-center red-400">
+                                    <p class="font-medium">More Actions</p>
+                                </div>
+                                <div class="h-[32%] flex items-center border-y-[0.5px] border-[#EEECF6] justify-center ">
+                                    <span class="text-brand900 cursor-pointer hover:font-bold" (click)="editUser(users)" >
+                                        <span class="hover:font-medium">View User</span> 
+                                    </span>
+                                </div>
+                                <div class="h-[32%] flex items-center justify-center">
+                                    <a routerLink="/drivers/{{users.id}}/edit" class="hover:text-brand900">
+                                       <span class="hover:font-medium">Edit User</span> 
+                                    </a>
+                                </div>
+                            </div>
                         </ng-template>
                          
                              <ng-template pTemplate="paginatorleft">

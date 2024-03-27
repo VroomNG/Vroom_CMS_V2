@@ -26,6 +26,8 @@ export class DriversEditComponent implements OnInit {
   alertMsg = 'Please wait';
   alertColor = 'primary';
 
+  displayDialog:boolean = false;
+
   constructor(
     private Drivers: DriversService,
     private route: ActivatedRoute,
@@ -36,6 +38,8 @@ export class DriversEditComponent implements OnInit {
   }
 
   ngOnInit(){
+
+    this.displayDialog = true;
     this.vehicles = [
       { name: 'SUV', code: 'NY' },
       { name: 'Sedan', code: 'RM' },
@@ -153,6 +157,14 @@ updateDriver() {
     // this.multi_docu.setValue(file); // Update the form control with the selected file
   }
 
+
+  close(){
+  
+    this.displayDialog = !this.displayDialog;
+    this.router.navigate(["/users"])
+   }
+
+  
 
   
 }
