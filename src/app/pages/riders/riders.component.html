@@ -10,10 +10,14 @@
                         <div class="w-[50%]">
                             <h5>Name</h5>
                             <p>{{ editedUser?.firstname }} {{ editedUser?.lastname }}</p>
+                            <p *ngIf="editedUser?.firstname === '' && editedUser?.lastname === '' ">No Name</p>
                         </div>
                         <div class="w-[50%]">
                             <h5>Email</h5>
                             <p>{{ editedUser?.email }}</p>
+                            <p *ngIf="editedUser?.email === '' || editedUser?.email === null  ">
+                             No Name
+                            </p>
                         </div>
                         <div class="w-[50%]">
                             <h5>Phone</h5>
@@ -23,32 +27,31 @@
                             <p>{{ editedUser?.phone_no }}</p>
                         </div>
                         <div class="w-[50%]">
-                            <h5>Vehicle Type</h5>
-                            {{ editedUser?.vehicle_type }}
+                            <h5>User Type</h5>
+                            <p *ngIf="editedUser?.user_type === '1' ">
+                              Rider
+                            </p>
                         </div>
                         <div class="w-[50%]">
                             <h5>Last Trip</h5>
                             {{ editedUser?.last_tripDate | date:'short':'UTC' }}
-                            <div *ngIf="editedUser?.last_tripDate == null">
+                            <p *ngIf="editedUser?.last_tripDate == null">
                                 not recorded
-                            </div>
+                            </p>
                         </div>
                         <div class="w-[50%]">
                             <h5>Registration Date</h5>
                             {{ editedUser?.created_at | date:'short':'UTC' }}
-                            <div *ngIf="editedUser?.created_at == null">
+                            <p *ngIf="editedUser?.created_at == null">
                                 not recorded
-                            </div>
+                            </p>
                         </div>
                         <div class="w-[50%]">
-                            <h5>City</h5>
-                            <span *ngIf="editedUser?.city === '' ">
-                                <p>City Not Selected</p>
-                            </span>
-                            <span *ngIf="editedUser?.city === null ">
-                                <p>City Not Selected</p>
-                            </span>
-                            <p>{{ editedUser?.city }}</p>
+                            <h5>Reference Code</h5>
+                            <p>{{ editedUser?.ref_code}}</p>
+                            <p *ngIf="editedUser?.ref_code === null">
+                              No reference Code
+                            </p>
                         </div>
                         <div class="w-[50%]">
                             <h5>Wallet Balance</h5>
@@ -60,19 +63,7 @@
                             </span>
                             <p>{{ editedUser?.balance }}</p>
                         </div>
-                        <div class="w-[50%]">
-                            <h5>Driver Status</h5>
-                            <div *ngIf="editedUser?.driver_status == 1">
-                                <span>
-                                    Approved
-                                </span>
-                            </div>
-                            <div *ngIf="editedUser?.driver_status == 0">
-                                <span>
-                                    UnApproved
-                                </span>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
                 
@@ -81,8 +72,8 @@
                         <app-button buttonText="Cancel" borderColor="#F1F2F4" bgColor="transparent" (click)="toggleDialog()"></app-button>
                     </div>
                     <div class="btn w-[48%]">
-                     <a routerLink="/users/{{editedUser?.id}}/edit" class="hover:text-brand900">
-                       <app-button buttonText="Edit Admin" borderColor="#28094F" bgColor="#28094F" textColor="#FFFFFF"></app-button>
+                     <a routerLink="/riders/{{editedUser?.id}}/edit" class="hover:text-brand900">
+                       <app-button buttonText="Edit Rider" borderColor="#28094F" bgColor="#28094F" textColor="#FFFFFF"></app-button>
                      </a>   
                  </div>
                  </div>
@@ -175,22 +166,22 @@
                                         </div>
                                     </span>
                                 </td>
-                                <div class="z-[9999] card  w-36 h-36 bg-white drop-shadow-xl absolute" *ngIf="selectedUserId === users.id">
-                                    <div class="h-[33%] bg-[#FAFAF9] rounded-t-md flex items-center justify-center red-400">
-                                        <p class="font-medium">More Actions</p>
-                                    </div>
-                                    <div class="h-[32%] flex items-center border-y-[0.5px] border-[#EEECF6] justify-center ">
-                                        <span class="text-brand900 cursor-pointer hover:font-bold" (click)="editUser(users)" >
-                                            <span class="hover:font-medium">View User</span> 
-                                        </span>
-                                    </div>
-                                    <div class="h-[32%] flex items-center justify-center">
-                                        <a routerLink="/users/{{users.id}}/edit" class="hover:text-brand900">
-                                           <span class="hover:font-medium">Edit User</span> 
-                                        </a>
-                                    </div>
-                                </div>
                             </tr> 
+                            <div class="z-[9999] card  w-36 h-36 ml-[60rem] bg-white drop-shadow-xl absolute" *ngIf="selectedUserId === users.id">
+                                <div class="h-[33%] bg-[#FAFAF9] rounded-t-md flex items-center justify-center red-400">
+                                    <p class="font-medium">More Actions</p>
+                                </div>
+                                <div class="h-[32%] flex items-center border-y-[0.5px] border-[#EEECF6] justify-center ">
+                                    <span class="text-brand900 cursor-pointer hover:font-bold" (click)="editUser(users)" >
+                                        <span class="hover:font-medium">View User</span> 
+                                    </span>
+                                </div>
+                                <div class="h-[32%] flex items-center justify-center">
+                                    <a routerLink="/riders/{{users.id}}/edit" class="hover:text-brand900">
+                                       <span class="hover:font-medium">Edit User</span> 
+                                    </a>
+                                </div>
+                            </div>
                         </ng-template>
                          
                              <ng-template pTemplate="paginatorleft">

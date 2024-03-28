@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup,Validators, } from '@angular/forms';
 import { PartnerService } from 'src/app/service/partners.service';
 import { UsersService } from 'src/app/service/users.service';
+import { Router } from '@angular/router';
 
 interface City {
   name: string;
@@ -20,12 +21,14 @@ export class PartnersAddComponent {
   alertMsg = 'Please wait';
   alertColor = 'primary';
   userDetails:any
+  displayDialog:boolean = false;
 
   // constructor and live cycle methods
-  constructor(private partners:PartnerService, private users:UsersService){ 
+  constructor(private partners:PartnerService, private users:UsersService, private router:Router){ 
   }
 
   ngOnInit(){
+    this.displayDialog = true;
     this.cities = [
       { name: 'Abia' },
       { name: 'Enugu' },
@@ -125,6 +128,11 @@ export class PartnersAddComponent {
 
   reset(){
     this.addPartners.reset()
+  }
+
+  close(){
+    this.displayDialog = !this.displayDialog;
+    this.router.navigate(['/users'])
   }
 }
 

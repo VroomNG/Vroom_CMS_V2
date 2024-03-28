@@ -19,7 +19,7 @@ export class UsersComponent implements OnInit {
  ]
 
  searchText: string = ''
- addNewAdmin: boolean = false;
+ 
 
  constructor(){}
   ngOnInit() {
@@ -27,11 +27,10 @@ export class UsersComponent implements OnInit {
   }
  
   activeIndex: number = 0;
-  // activeUserData: string = this.users[0].data;
 
   setActive(index: number) {
     this.activeIndex = index;
-    // this.activeUserData = this.users[index].data;
+
   }
 
   getRouterLink(index: number): string {

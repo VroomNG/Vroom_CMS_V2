@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {IVehicleType } from 'src/app/model/vehicleInfo';
 import { VehicleService } from 'src/app/service/vehicle.service';
 import * as FileSaver from 'file-saver';
@@ -10,19 +10,24 @@ import { UsersService } from 'src/app/service/users.service';
   styleUrls: ['./vehicle-type.component.scss']
 })
 export class VehicleTypeComponent implements OnInit {
-  
+
+  @Input() searchText: string = '';
+  showNoResults:boolean = false;
+  moreActions:boolean = false;
   vehicleType: IVehicleType [] = [];
   originalData = this.vehicleType;
   loaderColor!: 'primary';
   showLoader = true;
-  searchText: string = '';
-  userDetails:any
+  userDetails:any;
+  displayDialog:boolean = false;
+  viewVehicle: IVehicleType | any;
+  viewedRowId: number | null = null;
 
+  selectedUserId:any = null;
 
   constructor(
     private Vehicles : VehicleService,
     private users: UsersService
-
   ){
 
   }
@@ -97,6 +102,23 @@ export class VehicleTypeComponent implements OnInit {
       });
       FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
     }
+    editVehicle(vehicle: IVehicleType):any {
+      this.viewVehicle = { ...vehicle }; // Create a copy to avoid modifying the original data; 
+      this.viewedRowId = vehicle.id;
+      this.displayDialog = true;
+      this.selectedUserId = null; 
+    }
 
+    toggleDialog(){
+      this.displayDialog = !this.displayDialog
+    }
+
+    userAction(userId: any) {
+      if (this.selectedUserId === userId) {
+          this.selectedUserId = null; // Hide the card actions if the same user is clicked again
+      } else {
+          this.selectedUserId = userId; // Show the card actions for the clicked user
+      }
+  }
 
 }

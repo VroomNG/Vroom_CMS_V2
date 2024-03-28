@@ -183,11 +183,11 @@ import { AppActionsMenuComponent } from 'src/app/pages/app-actions-menu/app-acti
     SearchComponent,
     ButtonComponent,
     TripMenuComponent,
-    // VehiclesMenuComponent,
-    // ReviewsMenuComponent,
-    // ActivityLogComponent,
-    // ExplorerMenuComponent,
-    // AppActionsMenuComponent,
+    VehiclesMenuComponent,
+    ReviewsMenuComponent,
+    ActivityLogComponent,
+    ExplorerMenuComponent,
+    AppActionsMenuComponent,
   ]
 })
 

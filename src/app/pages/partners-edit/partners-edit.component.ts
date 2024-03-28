@@ -17,24 +17,26 @@ export class PartnersEditComponent implements OnInit {
 
   partners!: any;
   partnerId: any;
-  userDetails:any
-
+  userDetails:any;
   cities!: City[] |  undefined;
-
   showAlert:boolean = false;
   alertMsg = 'Updating user ...';
   alertColor = 'primary';
+  displayDialog:boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private Partner: PartnerService,
     private router:Router,
-    private users:UsersService
+    private users:UsersService,
+
     ){
 
   }
   ngOnInit() { 
-    this.cities = [
+
+  this.displayDialog = true;
+  this.cities = [
       { name: 'Abia' },
       { name: 'Enugu' },
       { name: 'Bauchi' },
@@ -44,6 +46,7 @@ export class PartnersEditComponent implements OnInit {
       { name: 'Abuja' },
       { name: 'Lagos'},
   ];
+
   const userDetails = this.users.getStoredUserDetails();
   this.userDetails = userDetails
   this.addAccessTrail()
@@ -126,5 +129,9 @@ deletePartner() {
   
   }
 
+  close(){
+    this.displayDialog = !this.displayDialog
+    this.router.navigate(['users/'])
+  }
 
 }

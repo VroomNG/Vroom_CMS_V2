@@ -75,7 +75,7 @@
                 <div *ngIf="showNoResults === true && !showLoader" class="w-full h-[80vh] flex items-center justify-center">
                     <h1 class="font-bold text-3xl text-gray-200">No Match Found</h1>
                 </div>
-                        <p-table *ngIf="!showLoader && !showNoResults" 
+                    <p-table *ngIf="!showLoader && !showNoResults" 
                             [value]="admins"
                             [paginator]="true"
                             [rows]="10"
@@ -161,8 +161,8 @@
                                 <ng-template pTemplate="paginatorright">
                                     <!-- <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button> -->
                                 </ng-template>
-                        </p-table>  
-                    </div>
+                    </p-table>  
+                </div>
                 </div>
             </div>    
 </div>

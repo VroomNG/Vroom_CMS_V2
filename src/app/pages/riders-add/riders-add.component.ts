@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl , FormGroup, Validators, } from '@angular/forms';
 import { RiderService } from 'src/app/service/riders.service';
 import { UsersService } from 'src/app/service/users.service';
+import { Router } from '@angular/router';
 
 interface City {
   name: string;
@@ -19,12 +20,14 @@ export class RidersAddComponent {
   showAlert = false;
   alertMsg = 'Please wait';
   alertColor = 'primary';
-  userDetails:any
+  userDetails:any;
+  displayDialog:boolean = false;
   
   // constructors & lifecycles
-  constructor(private riders: RiderService, private users:UsersService ){
+  constructor(private riders: RiderService, private users:UsersService, private router:Router ){
   }
   ngOnInit(){
+    this.displayDialog = true;    
     this.cities = [
       { name: 'Abia' },
       { name: 'Enugu' },
@@ -93,6 +96,7 @@ addAccessTrail(){
        } else {}
     }
   )}
+  
 onSubmit(){
   this.showAlert = true
   setTimeout(() => {
@@ -115,5 +119,17 @@ onSubmit(){
     )
     }, 1600)
 }
+
+close(){
+  
+  this.displayDialog = !this.displayDialog;
+  this.router.navigate(["/users"])
+ }
+
+
+reset(){
+  this.addRiders.reset()
+}  
+
 
 }

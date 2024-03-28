@@ -24,14 +24,17 @@ export class RidersEditComponent implements OnInit {
   showAlert:boolean = false;
   alertMsg = 'Updating user ...';
   alertColor = 'primary';
+  displayDialog: boolean = false;
 
   constructor(
     private Rider: RiderService,
     private route: ActivatedRoute,
+    private router: Router,
     private users:UsersService
     ){}
 
   ngOnInit(){ 
+    this.displayDialog = true
    this.riderId = this.route.snapshot.paramMap.get('id');
    console.log(this.riderId)
    this.Rider.getSingleRider(this.riderId).subscribe(
@@ -113,5 +116,11 @@ export class RidersEditComponent implements OnInit {
     
     }
   
+    close(){
+  
+      this.displayDialog = !this.displayDialog;
+      this.router.navigate(["/users"])
+     }
+    
 
 }

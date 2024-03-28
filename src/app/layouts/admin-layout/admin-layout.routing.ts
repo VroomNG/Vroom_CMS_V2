@@ -88,7 +88,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'vehicleUpdate/:id/edit', component: VehicleEditComponent, canActivate: [AuthClassGuard]},
     { path: 'view-partners', component: PartnersComponent, canActivate: [AuthClassGuard]},
     { path: 'add-partners', component: PartnersAddComponent, canActivate: [AuthClassGuard]},
-    { path: 'updateUser/:id/edit', component: PartnersEditComponent, canActivate: [AuthClassGuard]},
+    { path: 'partner/:id/edit', component: PartnersEditComponent, canActivate: [AuthClassGuard]},
     
     { path: 'add-drivers', component: DriversAddComponent, canActivate: [AuthClassGuard]},
     { path: 'approved-drivers', component: DriversApprovedComponent, canActivate: [AuthClassGuard]},

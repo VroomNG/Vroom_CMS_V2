@@ -23,15 +23,12 @@ export class AdminViewComponent implements OnInit {
 
 // variables
   admins!: any;
-  editedAdmin1: IAdmin | any;
   displayDialog: boolean = false;
   showLoader = true;
   originalData = this.admins;
   selectedUserId:any = null;
-  // selectedUser: any;
-  
-
   userDetails:any
+  editedAdmin1: IAdmin | any;
   editedRowId: number | null = null;
 
   //  lifecycle and constructor
@@ -160,8 +157,5 @@ export class AdminViewComponent implements OnInit {
     toggleDialog(){
       this.displayDialog = !this.displayDialog
     }
-
-  
-
 
 }
